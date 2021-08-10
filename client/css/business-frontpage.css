@@ -1,0 +1,125 @@
+/*!
+ * Start Bootstrap - Busines Frontpage (https://startbootstrap.com/template-overviews/business-frontpage)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-business-frontpage/blob/master/LICENSE)
+ */
+body {
+  padding-top: 56px;
+}
+
+/********************************************************/
+/* RALT Visual Identity */
+/********************************************************/
+
+a {
+  color: rgb(63, 143, 171);
+}
+
+a:hover {
+  color: rgb(63, 143, 171, 0.8);
+}
+
+.btn-primary {
+  background-color: rgb(63, 143, 171);
+  border-color: rgb(87, 195, 207);
+}
+
+.btn-primary:hover {
+  background-color: rgb(63, 143, 171, 0.8);
+  border-color: rgb(87, 195, 207);
+}
+
+/********************************************************/
+/* Fonts Import */
+/********************************************************/
+
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+
+/********************************************************/
+/* Virtual Tour Style */
+/********************************************************/
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: rgba(0, 0, 0, 0);
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.text-white-70 {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* FontAwesome Style */
+
+.fa-globe-europe {
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.fa-twitter {
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
+blockquote{
+  font-size: 1.4em;
+  width:100%;
+  margin:15px auto;
+  font-style:italic;
+  color: #555555;
+  padding:1.2em 30px 1.2em 75px;
+  border-left:8px solid rgb(63, 143, 171);
+  line-height:1.6;
+  position: relative;
+  background:#EDEDED;
+}
+
+blockquote::before{
+  font-family: Source Sans Pro;
+  content: "\201C";
+  color: rgb(63, 143, 171);
+  font-size:4em;
+  position: absolute;
+  left: 10px;
+  top:-10px;
+}
+
+blockquote::after{
+  content: '';
+}
+
+blockquote span{
+  display:block;
+  color:#333333;
+  font-style: normal;
+  font-weight: bold;
+  margin-top:1em;
+}

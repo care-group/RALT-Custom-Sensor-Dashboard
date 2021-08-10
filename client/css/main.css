@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+
+.form_container {
+    width: 350px;
+    margin: auto;
+    padding-top: 5%;
+}
+
+.title_container {
+    font-family: Source Sans Pro;
+    width: 80%;
+    margin: auto;
+    margin-top: 10pt;
+}
+
+.schedule_container {
+    border: 3px solid #f1f1f1;
+    font-family: Source Sans Pro;
+    width: 80%;
+    margin: auto;
+    margin-top: 10pt;
+}
+
+.center {
+    text-align: center;
+    margin-top: 10pt;
+}
+
+.message_box {
+    text-align: center;
+    color: green;
+    display: none;
+}
+
+td, tr, th {
+    font-size: 11pt;
+}
+
+td {
+    text-align: center;
+    background-color: grey;
+    border-width: 1pt;
+    border-style: solid;
+}
+
+.book_button {
+    display: none;
+}
+
+body {
+    background-color: #ffffff;
+}
+
+.red_box {
+    height: 12pt;
+    width: auto;
+    background-color: rgb(223, 13, 13);
+    display: inline-flex;
+    align-items: center;
+    padding: 10pt;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 5pt;
+}
+  
+.green_box {
+    height: 12pt;
+    width: auto;
+    background-color: rgb(24, 97, 24);
+    display: inline-flex;
+    align-items: center;
+    padding: 10pt;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 5pt;
+}
+
+p.status {
+    line-height: 18pt;
+}
