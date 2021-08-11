@@ -74,6 +74,7 @@
                     render_status(data)
                 },
                 error: function (data) {
+                    $("#sensors").append("The sensor status API is unavailable. Please check the container logs for errors.")
                     console.log('Failed!')
                     console.log(data)
                 }
@@ -94,7 +95,7 @@
 
         const interval = setInterval(function() {
             location.reload();
-        }, 5000);
+        }, 10000);
     </script>
 
 </body>
