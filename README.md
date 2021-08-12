@@ -1,6 +1,6 @@
-# RALT Custom Sensor Dashboard 
+# RALT Signalman Dasboard
 
-This repository contains the Docker dependencies for the RALT Custom Sensor Dashboard, which provides status information and test capability for the [RALT Custom Sensors](https://github.com/care-group/RALT-Custom-Sensors).
+This repository contains the Docker dependencies for the RALT Signalman Dashboard, which provides status information and test capability for the [RALT Custom Sensors](https://github.com/care-group/RALT-Custom-Sensors).
 
 ## Usage
 
