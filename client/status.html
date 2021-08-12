@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>RALT Custom Sensor Dashboard</title>
+    <title>RALT Signalman Dashboard</title>
 
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -10,15 +10,6 @@
     <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
 
     <link rel="stylesheet" href="css/main.css">
-
-    <script>
-        $(function () {
-            $("#datepicker").datepicker({ dateFormat: 'dd/mm/yy' });
-        });
-        $(function () {
-            $("#tabs").tabs();
-        });
-    </script>
 </head>
 
 <body onload="update()">
@@ -32,6 +23,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item inactive">
+                        <a class="nav-link" href='index.html'>Control</a>
+                    </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="status.html">Sensor Status
                             <span class="sr-only">(current)</span>
