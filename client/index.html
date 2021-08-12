@@ -82,7 +82,7 @@
     <script>
         function update(){
             $.ajax({
-                url: 'http://ubuntu:5002/status',
+                url: 'http://0.0.0.0:5002/status',
                 method: "GET",
                 headers: {
                     "Content-Type": "application/txt",
@@ -124,7 +124,7 @@
 
         function send_start_cmd(){
             $.ajax({
-                url: 'http://ubuntu:5002/control',
+                url: 'http://0.0.0.0:5002/control',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/txt",
@@ -147,7 +147,7 @@
 
         function send_stop_cmd(){
             $.ajax({
-                url: 'http://ubuntu:5002/control',
+                url: 'http://0.0.0.0:5002/control',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/txt",
