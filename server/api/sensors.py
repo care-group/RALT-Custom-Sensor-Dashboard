@@ -35,7 +35,6 @@ class SensorsApi(Resource):
 
         sensor_states_copy = copy.deepcopy(sensor_states)
         for key, value in sensor_states_copy.items():
-            print(now - value)
             if (now - value) < 30000:
                 sensor_states_copy[key] = "OK"
             else:
