@@ -55,6 +55,6 @@ class SensorsApi(Resource):
 
         output = "OK"
 
-        print(sensor_states)
+        # print(sensor_states)
 
         return jsonify({'result': output})
