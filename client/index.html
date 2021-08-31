@@ -136,6 +136,7 @@
             }
 
             $( "#bagfile" ).empty()
+            $( "#bagfile" ).append("[MAIN] ")
             $( "#bagfile" ).append(bagfile)
         }
 
@@ -144,6 +145,8 @@
             running = data["running"]
             topics = data["topics"]
 
+            $( "#bagfile" ).append("<br>")
+            $( "#bagfile" ).append("[HSR]  ")
             $( "#bagfile" ).append(bagfile)
         }
 
