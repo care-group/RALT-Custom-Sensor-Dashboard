@@ -75,6 +75,11 @@
                 <button type="button" class="btn btn-danger" onclick="send_stop_cmd()">Stop</button>
                 <br>
                 <br>
+
+                <h3>Merge Bag Files</h3>
+                <button type="button" class="btn btn-info" onclick="merge_bag_files()">Merge</button>
+                <br>
+                <br>
             </div>
         </div>
     </div>
@@ -230,6 +235,29 @@
                 },
                 error: function (data) {
                     $("#sensors").append("The Signalman backend (HSR) is unavailable. Please check the container logs for errors.")
+                    console.log('Failed!')
+                    console.log(data)
+                }
+            })
+        }
+
+        function merge_bag_files(){
+            $.ajax({
+                url: 'http://127.0.1.1:5002/merge',
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/txt",
+                },
+                data: "",
+                success: function (data) {
+                    console.log('Success!')
+                    console.log(data)
+                    setTimeout(function(){
+                        location.reload();
+                    }, 2000);
+                },
+                error: function (data) {
+                    $("#sensors").append("Either the Signalman backend is unavailable, or the process to merge bag files has failed. Please check the container logs for errors.")
                     console.log('Failed!')
                     console.log(data)
                 }
