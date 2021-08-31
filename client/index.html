@@ -61,9 +61,17 @@
                 <br>
                 <br>
 
-                <h3>Bag File</h3>
+                <h3>Bag Files</h3>
                 <code id="bagfile">
-                    None.
+                    [MAIN] None.
+                </code>
+                <br>
+                <code id="bagfile_hsr">
+                    [HSR] None.
+                </code>
+                <br>
+                <code id="bagfile_merged">
+                    [MERGED] None.
                 </code>
             </div>
             <div class="col-sm">
@@ -127,6 +135,7 @@
             bagfile = data["bagfile"]
             running = data["running"]
             topics = data["topics"]
+            merged_bagfile = data["merged_bagfile"]
 
             jQuery.each(topics, function(i, val) {
                 $( "#topics" ).append(val+"<br>")
@@ -143,6 +152,8 @@
             $( "#bagfile" ).empty()
             $( "#bagfile" ).append("[MAIN] ")
             $( "#bagfile" ).append(bagfile)
+            $( "#bagfile_merged" ).empty()
+            $( "#bagfile_merged" ).append(merged_bagfile)
         }
 
         function render_status_hsr(data){
@@ -150,9 +161,9 @@
             running = data["running"]
             topics = data["topics"]
 
-            $( "#bagfile" ).append("<br>")
-            $( "#bagfile" ).append("[HSR]  ")
-            $( "#bagfile" ).append(bagfile)
+            $( "#bagfile_hsr" ).empty()
+            $( "#bagfile_hsr" ).append("[HSR]  ")
+            $( "#bagfile_hsr" ).append(bagfile)
         }
 
         function send_start_cmd(){
