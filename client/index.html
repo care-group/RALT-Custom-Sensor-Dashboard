@@ -257,11 +257,11 @@
         function merge_bag_files(){
             $.ajax({
                 url: 'http://127.0.1.1:5002/merge',
-                method: "GET",
+                method: "POST",
                 headers: {
                     "Content-Type": "application/txt",
                 },
-                data: "",
+                data: $( "#bagfile_hsr" ).text(),
                 success: function (data) {
                     console.log('Success!')
                     console.log(data)
