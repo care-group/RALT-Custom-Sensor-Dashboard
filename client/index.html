@@ -63,15 +63,15 @@
 
                 <h3>Bag Files</h3>
                 <code id="bagfile">
-                    [MAIN] None.
+                    None.
                 </code>
                 <br>
                 <code id="bagfile_hsr">
-                    [HSR] None.
+                    None.
                 </code>
                 <br>
                 <code id="bagfile_merged">
-                    [MERGED] None.
+                    None.
                 </code>
             </div>
             <div class="col-sm">
@@ -150,11 +150,9 @@
             }
 
             $( "#bagfile" ).empty()
-            $( "#bagfile" ).append("[MAIN] ")
             $( "#bagfile" ).append(bagfile)
             
             $( "#bagfile_merged" ).empty()
-            $( "#bagfile_merged" ).append("[MERGED] ")
             $( "#bagfile_merged" ).append(merged_bagfile)
         }
 
@@ -164,7 +162,6 @@
             topics = data["topics"]
 
             $( "#bagfile_hsr" ).empty()
-            $( "#bagfile_hsr" ).append("[HSR]  ")
             $( "#bagfile_hsr" ).append(bagfile)
         }
 
