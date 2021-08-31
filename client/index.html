@@ -112,7 +112,6 @@
                     render_status_hsr(data)
                 },
                 error: function (data) {
-                    $("#sensors").append("The sensor status API is unavailable. Please check the container logs for errors.")
                     console.log('Failed!')
                     console.log(data)
                 }
@@ -140,7 +139,7 @@
             $( "#bagfile" ).append(bagfile)
         }
 
-        function render_status(data){
+        function render_status_hsr(data){
             bagfile = data["bagfile"]
             running = data["running"]
             topics = data["topics"]
@@ -164,7 +163,7 @@
                     }, 2000);
                 },
                 error: function (data) {
-                    $("#sensors").append("The sensor status API is unavailable. Please check the container logs for errors.")
+                    $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
                     console.log('Failed!')
                     console.log(data)
                 }
@@ -184,7 +183,7 @@
                     }, 2000);
                 },
                 error: function (data) {
-                    $("#sensors").append("The sensor status API is unavailable. Please check the container logs for errors.")
+                    $("#sensors").append("The Signalman backend (HSR) is unavailable. Please check the container logs for errors.")
                     console.log('Failed!')
                     console.log(data)
                 }
@@ -207,7 +206,7 @@
                     }, 2000);
                 },
                 error: function (data) {
-                    $("#sensors").append("The sensor status API is unavailable. Please check the container logs for errors.")
+                    $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
                     console.log('Failed!')
                     console.log(data)
                 }
@@ -227,7 +226,7 @@
                     }, 2000);
                 },
                 error: function (data) {
-                    $("#sensors").append("The sensor status API is unavailable. Please check the container logs for errors.")
+                    $("#sensors").append("The Signalman backend (HSR) is unavailable. Please check the container logs for errors.")
                     console.log('Failed!')
                     console.log(data)
                 }
