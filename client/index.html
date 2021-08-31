@@ -99,6 +99,24 @@
                     console.log(data)
                 }
             })
+            $.ajax({
+                url: 'http://127.0.1.1:5004/status',
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/txt",
+                },
+                data: "",
+                success: function (data) {
+                    console.log('Success!')
+                    console.log(data)
+                    render_status_hsr(data)
+                },
+                error: function (data) {
+                    $("#sensors").append("The sensor status API is unavailable. Please check the container logs for errors.")
+                    console.log('Failed!')
+                    console.log(data)
+                }
+            })
         }
 
         function render_status(data){
@@ -119,6 +137,14 @@
             }
 
             $( "#bagfile" ).empty()
+            $( "#bagfile" ).append(bagfile)
+        }
+
+        function render_status(data){
+            bagfile = data["bagfile"]
+            running = data["running"]
+            topics = data["topics"]
+
             $( "#bagfile" ).append(bagfile)
         }
 
@@ -143,11 +169,51 @@
                     console.log(data)
                 }
             })
+            $.ajax({
+                url: 'http://127.0.1.1:5004/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/txt",
+                },
+                data: "True",
+                success: function (data) {
+                    console.log('Success!')
+                    console.log(data)
+                    setTimeout(function(){
+                        location.reload();
+                    }, 2000);
+                },
+                error: function (data) {
+                    $("#sensors").append("The sensor status API is unavailable. Please check the container logs for errors.")
+                    console.log('Failed!')
+                    console.log(data)
+                }
+            })
         }
 
         function send_stop_cmd(){
             $.ajax({
                 url: 'http://127.0.1.1:5002/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/txt",
+                },
+                data: "False",
+                success: function (data) {
+                    console.log('Success!')
+                    console.log(data)
+                    setTimeout(function(){
+                        location.reload();
+                    }, 2000);
+                },
+                error: function (data) {
+                    $("#sensors").append("The sensor status API is unavailable. Please check the container logs for errors.")
+                    console.log('Failed!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5004/control',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/txt",
