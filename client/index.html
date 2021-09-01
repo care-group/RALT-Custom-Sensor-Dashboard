@@ -88,6 +88,23 @@
                 <button type="button" class="btn btn-info" onclick="merge_bag_files()">Merge</button>
                 <br>
                 <br>
+
+                <h3>Tiago Position</h3>
+                <div class="form-group">
+                    <label>Automatic</label>
+                    <br>
+                    <button type="button" class="btn btn-secondary" onclick="tiago_position_auto(1)">1</button>
+                    <button type="button" class="btn btn-secondary" onclick="tiago_position_auto(2)">2</button>
+                    <button type="button" class="btn btn-secondary" onclick="tiago_position_auto(3)">3</button>
+                    <button type="button" class="btn btn-secondary" onclick="tiago_position_auto(4)">4</button>
+                    <br>
+                    <br>
+                    <!-- <label for="tiago_manual_pos">Manual</label>
+                    <textarea class="form-control" id="tiago_manual_pos" rows=1></textarea>
+                    <button type="button" class="btn btn-success" onclick="tiago_position_manual()">Go!</button> -->
+                </div>
+                <br>
+                <br>
             </div>
         </div>
     </div>
@@ -268,6 +285,26 @@
                 },
                 error: function (data) {
                     $("#sensors").append("Either the Signalman backend is unavailable, or the process to merge bag files has failed. Please check the container logs for errors.")
+                    console.log('Failed!')
+                    console.log(data)
+                }
+            })
+        }
+
+        function send_stop_cmd(pos){
+            $.ajax({
+                url: 'http://127.0.1.1:5005/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/txt",
+                },
+                data: pos,
+                success: function (data) {
+                    console.log('Success!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    $("#sensors").append("The Tiago control container is unavailable. Please check the container logs for errors.")
                     console.log('Failed!')
                     console.log(data)
                 }
