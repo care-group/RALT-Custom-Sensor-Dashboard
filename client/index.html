@@ -116,13 +116,13 @@
                 },
                 data: "",
                 success: function (data) {
-                    console.log('Success!')
+                    console.log('Successful response from main backend!')
                     console.log(data)
                     render_status(data)
                 },
                 error: function (data) {
                     $("#sensors").append("The sensor status API is unavailable. Please check the container logs for errors.")
-                    console.log('Failed!')
+                    console.log('Failed response from main backend!')
                     console.log(data)
                 }
             })
@@ -134,12 +134,12 @@
                 },
                 data: "",
                 success: function (data) {
-                    console.log('Success!')
+                    console.log('Successful response from HSR backend!')
                     console.log(data)
                     render_status_hsr(data)
                 },
                 error: function (data) {
-                    console.log('Failed!')
+                    console.log('Failed response from HSR backend!')
                     console.log(data)
                 }
             })
@@ -196,7 +196,7 @@
                 },
                 error: function (data) {
                     $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
-                    console.log('Failed!')
+                    console.log('Failed response from main backend!')
                     console.log(data)
                 }
             })
@@ -216,7 +216,7 @@
                 },
                 error: function (data) {
                     $("#sensors").append("The Signalman backend (HSR) is unavailable. Please check the container logs for errors.")
-                    console.log('Failed!')
+                    console.log('Failed response from HSR backend!')
                     console.log(data)
                 }
             })
@@ -236,7 +236,7 @@
                 },
                 error: function (data) {
                     $("#sensors").append("The Signalman backend (webcams) is unavailable. Please check the container logs for errors.")
-                    console.log('Failed!')
+                    console.log('Failed response from webcams backend!')
                     console.log(data)
                 }
             })
@@ -259,7 +259,7 @@
                 },
                 error: function (data) {
                     $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
-                    console.log('Failed!')
+                    console.log('Failed response from main backend!')
                     console.log(data)
                 }
             })
@@ -279,7 +279,7 @@
                 },
                 error: function (data) {
                     $("#sensors").append("The Signalman backend (HSR) is unavailable. Please check the container logs for errors.")
-                    console.log('Failed!')
+                    console.log('Failed response from HSR backend!')
                     console.log(data)
                 }
             })
@@ -299,7 +299,7 @@
                 },
                 error: function (data) {
                     $("#sensors").append("The Signalman backend (webcams) is unavailable. Please check the container logs for errors.")
-                    console.log('Failed!')
+                    console.log('Failed response from webcams backend!')
                     console.log(data)
                 }
             })
@@ -322,27 +322,7 @@
                 },
                 error: function (data) {
                     $("#sensors").append("Either the Signalman backend is unavailable, or the process to merge bag files has failed. Please check the container logs for errors.")
-                    console.log('Failed!')
-                    console.log(data)
-                }
-            })
-        }
-
-        function send_stop_cmd(pos){
-            $.ajax({
-                url: 'http://127.0.1.1:5005/control',
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/txt",
-                },
-                data: pos,
-                success: function (data) {
-                    console.log('Succesful response fro Tiago control container!')
-                    console.log(data)
-                },
-                error: function (data) {
-                    $("#sensors").append("The Tiago control container is unavailable. Please check the container logs for errors.")
-                    console.log('Failed!')
+                    console.log('Failed response from main backend!')
                     console.log(data)
                 }
             })
