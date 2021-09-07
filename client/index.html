@@ -89,7 +89,7 @@
                 <br>
                 <br>
 
-                <h3>Tiago Position</h3>
+                <!-- <h3>Tiago Position</h3>
                 <div class="form-group">
                     <label>Automatic</label>
                     <br>
@@ -99,12 +99,9 @@
                     <button type="button" class="btn btn-secondary" onclick="tiago_position_auto(4)">4</button>
                     <br>
                     <br>
-                    <!-- <label for="tiago_manual_pos">Manual</label>
-                    <textarea class="form-control" id="tiago_manual_pos" rows=1></textarea>
-                    <button type="button" class="btn btn-success" onclick="tiago_position_manual()">Go!</button> -->
                 </div>
                 <br>
-                <br>
+                <br> -->
             </div>
         </div>
     </div>
@@ -191,7 +188,7 @@
                 },
                 data: "True",
                 success: function (data) {
-                    console.log('Success!')
+                    console.log('Successful response from main backend!')
                     console.log(data)
                     setTimeout(function(){
                         location.reload();
@@ -211,7 +208,7 @@
                 },
                 data: "True",
                 success: function (data) {
-                    console.log('Success!')
+                    console.log('Successful response from HSR backend!')
                     console.log(data)
                     setTimeout(function(){
                         location.reload();
@@ -219,6 +216,26 @@
                 },
                 error: function (data) {
                     $("#sensors").append("The Signalman backend (HSR) is unavailable. Please check the container logs for errors.")
+                    console.log('Failed!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5006/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/txt",
+                },
+                data: "True",
+                success: function (data) {
+                    console.log('Successful response from webcams backend!')
+                    console.log(data)
+                    setTimeout(function(){
+                        location.reload();
+                    }, 2000);
+                },
+                error: function (data) {
+                    $("#sensors").append("The Signalman backend (webcams) is unavailable. Please check the container logs for errors.")
                     console.log('Failed!')
                     console.log(data)
                 }
@@ -234,7 +251,7 @@
                 },
                 data: "False",
                 success: function (data) {
-                    console.log('Success!')
+                    console.log('Successful response from main backend!')
                     console.log(data)
                     setTimeout(function(){
                         location.reload();
@@ -254,7 +271,7 @@
                 },
                 data: "False",
                 success: function (data) {
-                    console.log('Success!')
+                    console.log('Successful response from HSR backend!')
                     console.log(data)
                     setTimeout(function(){
                         location.reload();
@@ -262,6 +279,26 @@
                 },
                 error: function (data) {
                     $("#sensors").append("The Signalman backend (HSR) is unavailable. Please check the container logs for errors.")
+                    console.log('Failed!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5006/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/txt",
+                },
+                data: "False",
+                success: function (data) {
+                    console.log('Successful response from webcams backend!')
+                    console.log(data)
+                    setTimeout(function(){
+                        location.reload();
+                    }, 2000);
+                },
+                error: function (data) {
+                    $("#sensors").append("The Signalman backend (webcams) is unavailable. Please check the container logs for errors.")
                     console.log('Failed!')
                     console.log(data)
                 }
@@ -277,7 +314,7 @@
                 },
                 data: $( "#bagfile_hsr" ).text(),
                 success: function (data) {
-                    console.log('Success!')
+                    console.log('Successful merge request!')
                     console.log(data)
                     setTimeout(function(){
                         location.reload();
@@ -300,7 +337,7 @@
                 },
                 data: pos,
                 success: function (data) {
-                    console.log('Success!')
+                    console.log('Succesful response fro Tiago control container!')
                     console.log(data)
                 },
                 error: function (data) {
