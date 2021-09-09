@@ -73,6 +73,21 @@
                 <code id="bagfile_merged">
                     None.
                 </code>
+                <br>
+                <br>
+
+                <h3>Video Files</h3>
+                <code id="video_1">
+                    None.
+                </code>
+                <br>
+                <code id="video_2">
+                    None.
+                </code>
+                <br>
+                <code id="video_3">
+                    None.
+                </code>
             </div>
             <div class="col-sm">
                 <h2>Control</h2>
@@ -143,6 +158,23 @@
                     console.log(data)
                 }
             })
+            $.ajax({
+                url: 'http://127.0.1.1:5006/status',
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/txt",
+                },
+                data: "",
+                success: function (data) {
+                    console.log('Successful response from webcams backend!')
+                    console.log(data)
+                    render_status_video(data)
+                },
+                error: function (data) {
+                    console.log('Failed response from webcams backend!')
+                    console.log(data)
+                }
+            })
         }
 
         function render_status(data){
@@ -177,6 +209,405 @@
 
             $( "#bagfile_hsr" ).empty()
             $( "#bagfile_hsr" ).append(bagfile)
+        }
+
+        function render_status_video(data){
+            video_1 = data["camera_1"]
+            video_2 = data["camera_2"]
+            video_3 = data["camera_3"]
+
+            $( "#video_1" ).empty()
+            $( "#video_1" ).append(video_1)
+
+            $( "#video_2" ).empty()
+            $( "#video_2" ).append(video_2)
+            
+            $( "#video_3" ).empty()
+            $( "#video_3" ).append(video_3)
+        }
+
+        function send_start_cmd(){
+            $.ajax({
+                url: 'http://127.0.1.1:5002/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/txt",
+                },
+                data: "True",
+                success: function (data) {
+                    console.log('Successful response from main backend!')
+                    console.log(data)
+                    setTimeout(function(){
+                        location.reload();
+                    }, 2000);
+                },
+                error: function (data) {
+                    $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
+                    console.log('Failed response from main backend!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5004/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/txt",
+                },
+                data: "True",
+                success: function (data) {
+                    console.log('Successful response from HSR backend!')
+                    console.log(data)
+                    setTimeout(function(){
+                        location.reload();
+                    }, 2000);
+                },
+                error: function (data) {
+                    $("#sensors").append("The Signalman backend (HSR) is unavailable. Please check the container logs for errors.")
+                    console.log('Failed response from HSR backend!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5006/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/txt",
+                },
+                data: "True",
+                success: function (data) {
+                    console.log('Successful response from webcams backend!')
+                    console.log(data)
+                    setTimeout(function(){
+                        location.reload();
+                    }, 2000);
+                },
+                error: function (data) {
+                    $("#sensors").append("The Signalman backend (webcams) is unavailable. Please check the container logs for errors.")
+                    console.log('Failed response from webcams backend!')
+                    console.log(data)
+                }
+            })
+        }
+
+        function send_stop_cmd(){
+            $.ajax({
+                url: 'http://127.0.1.1:5002/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/txt",
+                },
+                data: "False",
+                success: function (data) {
+                    console.log('Successful response from main backend!')
+                    console.log(data)
+                    setTimeout(function(){
+                        location.reload();
+                    }, 2000);
+                },
+                error: function (data) {
+                    $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
+                    console.log('Failed response from main backend!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5004/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/txt",
+                },
+                data: "False",
+                success: function (data) {
+                    console.log('Successful response from HSR backend!')
+                    console.log(data)
+                    setTimeout(function(){
+                        location.reload();
+                    }, 2000);
+                },
+                error: function (data) {
+                    $("#sensors").append("The Signalman backend (HSR) is unavailable. Please check the container logs for errors.")
+                    console.log('Failed response from HSR backend!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5006/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/txt",
+                },
+                data: "False",
+                success: function (data) {
+                    console.log('Successful response from webcams backend!')
+                    console.log(data)
+                    setTimeout(function(){
+                        location.reload();
+                    }, 2000);
+                },
+                error: function (data) {
+                    $("#sensors").append("The Signalman backend (webcams) is unavailable. Please check the container logs for errors.")
+                    console.log('Failed response from webcams backend!')
+                    console.log(data)
+                }
+            })
+        }
+
+        function merge_bag_files(){
+            $.ajax({
+                url: 'http://127.0.1.1:5002/merge',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/txt",
+                },
+                data: $( "#bagfile_hsr" ).text(),
+                success: function (data) {
+                    console.log('Successful merge request!')
+                    console.log(data)
+                    setTimeout(function(){
+                        location.reload();
+                    }, 2000);
+                },
+                error: function (data) {
+                    $("#sensors").append("Either the Signalman backend is unavailable, or the process to merge bag files has failed. Please check the container logs for errors.")
+                    console.log('Failed response from main backend!')
+                    console.log(data)
+                }
+            })
+        }
+
+        const interval = setInterval(function() {
+            location.reload();
+        }, 10000);
+    </script>
+
+</body>
+
+</html><html>
+
+<head>
+    <title>RALT Signalman Dashboard</title>
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="update()">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="assets/ralt_house.png" height=55px></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Control</a>
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item inactive">
+                        <a class="nav-link" href='status.html'>Sensor Status</a>
+                    </li>
+                    <li class="nav-item inactive">
+                        <a class="nav-link" href='test.html'>Sensor Test</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="py-2 mb-5" style="background-image: url('assets/header-pink.png'); background-size: auto 100%; height: 250px;">
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <h2>Status</h2>
+                <hr>
+
+                <h3>Target Topics</h3>
+                <pre><samp id="topics"></samp></pre>
+                <div class="alert alert-warning" role="alert">
+                    These are the topics that RALT Signalman will attempt to record. It is not a guarantee that they are online. Validate that your topics are available using <code>rostopic list</code> on the host.
+                </div>
+
+                <h3>Status</h3>
+                <code id="status">
+                    Not recording.
+                </code>
+                <br>
+                <br>
+
+                <h3>Bag Files</h3>
+                <code id="bagfile">
+                    None.
+                </code>
+                <br>
+                <code id="bagfile_hsr">
+                    None.
+                </code>
+                <br>
+                <code id="bagfile_merged">
+                    None.
+                </code>
+                <br>
+                <br>
+
+                <h3>Video Files</h3>
+                <code id="video_1">
+                    None.
+                </code>
+                <br>
+                <code id="video_2">
+                    None.
+                </code>
+                <br>
+                <code id="video_3">
+                    None.
+                </code>
+            </div>
+            <div class="col-sm">
+                <h2>Control</h2>
+                <hr>
+
+                <h3>Bag File Recording</h3>
+                <button type="button" class="btn btn-success" onclick="send_start_cmd()">Start</button>
+                <button type="button" class="btn btn-danger" onclick="send_stop_cmd()">Stop</button>
+                <br>
+                <br>
+
+                <h3>Merge Bag Files</h3>
+                <button type="button" class="btn btn-info" onclick="merge_bag_files()">Merge</button>
+                <br>
+                <br>
+
+                <!-- <h3>Tiago Position</h3>
+                <div class="form-group">
+                    <label>Automatic</label>
+                    <br>
+                    <button type="button" class="btn btn-secondary" onclick="tiago_position_auto(1)">1</button>
+                    <button type="button" class="btn btn-secondary" onclick="tiago_position_auto(2)">2</button>
+                    <button type="button" class="btn btn-secondary" onclick="tiago_position_auto(3)">3</button>
+                    <button type="button" class="btn btn-secondary" onclick="tiago_position_auto(4)">4</button>
+                    <br>
+                    <br>
+                </div>
+                <br>
+                <br> -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function update(){
+            $.ajax({
+                url: 'http://127.0.1.1:5002/status',
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/txt",
+                },
+                data: "",
+                success: function (data) {
+                    console.log('Successful response from main backend!')
+                    console.log(data)
+                    render_status(data)
+                },
+                error: function (data) {
+                    $("#sensors").append("The sensor status API is unavailable. Please check the container logs for errors.")
+                    console.log('Failed response from main backend!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5004/status',
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/txt",
+                },
+                data: "",
+                success: function (data) {
+                    console.log('Successful response from HSR backend!')
+                    console.log(data)
+                    render_status_hsr(data)
+                },
+                error: function (data) {
+                    console.log('Failed response from HSR backend!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5006/status',
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/txt",
+                },
+                data: "",
+                success: function (data) {
+                    console.log('Successful response from webcams backend!')
+                    console.log(data)
+                    render_status_video(data)
+                },
+                error: function (data) {
+                    console.log('Failed response from webcams backend!')
+                    console.log(data)
+                }
+            })
+        }
+
+        function render_status(data){
+            bagfile = data["bagfile"]
+            running = data["running"]
+            topics = data["topics"]
+            merged_bagfile = data["merged_bagfile"]
+
+            jQuery.each(topics, function(i, val) {
+                $( "#topics" ).append(val+"<br>")
+            });
+
+            $( "#status" ).empty()
+            if (running){
+                $( "#status" ).append("<span class='green_box'>RUNNING</span>")
+            }
+            else{
+                $( "#status" ).append("<span class='red_box'>STOPPED</span>")
+            }
+
+            $( "#bagfile" ).empty()
+            $( "#bagfile" ).append(bagfile)
+            
+            $( "#bagfile_merged" ).empty()
+            $( "#bagfile_merged" ).append(merged_bagfile)
+        }
+
+        function render_status_hsr(data){
+            bagfile = data["bagfile"]
+            running = data["running"]
+            topics = data["topics"]
+
+            $( "#bagfile_hsr" ).empty()
+            $( "#bagfile_hsr" ).append(bagfile)
+        }
+
+        function render_status_video(data){
+            video_1 = data["camera_1"]
+            video_2 = data["camera_2"]
+            video_3 = data["camera_3"]
+
+            $( "#video_1" ).empty()
+            $( "#video_1" ).append(video_1)
+
+            $( "#video_2" ).empty()
+            $( "#video_2" ).append(video_2)
+            
+            $( "#video_3" ).empty()
+            $( "#video_3" ).append(video_3)
         }
 
         function send_start_cmd(){
