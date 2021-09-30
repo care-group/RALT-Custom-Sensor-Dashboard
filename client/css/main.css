@@ -51,6 +51,18 @@ body {
     background-color: #ffffff;
 }
 
+.grey_box {
+    height: 12pt;
+    width: auto;
+    background-color: rgb(104, 104, 104);
+    display: inline-flex;
+    align-items: center;
+    padding: 10pt;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 5pt;
+}
+
 .red_box {
     height: 12pt;
     width: auto;
