@@ -420,7 +420,7 @@
                 headers: {
                     "Content-Type": "application/txt",
                 },
-                data: "False",
+                data: JSON.stringify({ command: 'False', activity: activity}),
                 success: function (data) {
                     console.log('Successful response from main backend!')
                     console.log(data)
@@ -437,7 +437,7 @@
                 headers: {
                     "Content-Type": "application/txt",
                 },
-                data: "False",
+                data: JSON.stringify({ command: 'False', activity: activity}),
                 success: function (data) {
                     console.log('Successful response from HSR backend!')
                     console.log(data)
@@ -454,7 +454,7 @@
                 headers: {
                     "Content-Type": "application/txt",
                 },
-                data: "False",
+                data: JSON.stringify({ command: 'False', activity: activity}),
                 success: function (data) {
                     console.log('Successful response from webcams backend!')
                     console.log(data)
@@ -471,7 +471,7 @@
                 headers: {
                     "Content-Type": "application/txt",
                 },
-                data: "False",
+                data: JSON.stringify({ command: 'False', activity: activity}),
                 success: function (data) {
                     console.log('Successful response from ralt_semantic_event_logger container!')
                     console.log(data)
@@ -487,7 +487,7 @@
                 headers: {
                     "Content-Type": "application/txt",
                 },
-                data: "False",
+                data: JSON.stringify({ command: 'False', activity: activity}),
                 success: function (data) {
                     console.log('Successful response from apple_watch_publisher container!')
                     console.log(data)
