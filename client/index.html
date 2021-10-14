@@ -99,14 +99,40 @@
                 <h2>Control</h2>
                 <hr>
 
-                <h3>Bag File Recording</h3>
-                <button type="button" class="btn btn-success" onclick="send_start_cmd()">Start</button>
-                <button type="button" class="btn btn-danger" onclick="send_stop_cmd()">Stop</button>
+                <h3>Manual Recording</h3>
+                <button type="button" style="width:49%;" class="btn btn-success" onclick="send_start_cmd('none')">Start</button>
+                <button type="button" style="width:49%;" class="btn btn-danger" onclick="send_stop_cmd()">Stop</button>
+                <br>
+                <br>
+
+                <h3>Activity Recording</h3>
+                <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_start_cmd('prepare_cold_meal')">Prepare Cold Meal</button>
+                <button type="button" style="width:33%; margin-top:0pt;" class="btn btn-success" onclick="send_start_cmd('prepare_hot_meal')">Prepare Hot Meal</button>
+                <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_start_cmd('prepare_cold_drink')">Prepare Cold Drink</button>
+
+                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('prepare_hot_drink')">Prepare Hot Drink</button>
+                <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('setting_table')">Setting Table</button>
+                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('eating_table')">Eating (Table)</button>
+
+                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('washing_dishes')">Washing Dishes</button>
+                <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('cleaning_kitchen')">Cleaning (Kitchen)</button>
+                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('working_table')">Working (Table)</button>
+
+                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('watching_tv')">Watching TV</button>
+                <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('reading_sofa')">Reading (Sofa)</button>
+                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('toileting')">Toileting</button>
+
+                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('showering')">Showering</button>
+                <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('dressing')">Dressing</button>
+                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('reading_bed')">Reading (Bed)</button>
+
+                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('sleeping')">Sleeping</button>
+                <button type="button" style="width:100%; margin-top:5pt;" class="btn btn-danger" onclick="send_stop_cmd()">Stop</button>
                 <br>
                 <br>
 
                 <h3>Merge Bag Files</h3>
-                <button type="button" class="btn btn-info" onclick="merge_bag_files()">Merge</button>
+                <button type="button" style="width:100%;" class="btn btn-info" onclick="merge_bag_files()">Merge</button>
                 <br>
                 <br>
             </div>
@@ -298,14 +324,14 @@
             }
         }
 
-        function send_start_cmd(){
+        function send_start_cmd(activity){
             $.ajax({
                 url: 'http://127.0.1.1:5002/control',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/txt",
                 },
-                data: "True",
+                data: JSON.stringify({ command: 'True', activity: activity}),
                 success: function (data) {
                     console.log('Successful response from main backend!')
                     console.log(data)
@@ -322,7 +348,7 @@
                 headers: {
                     "Content-Type": "application/txt",
                 },
-                data: "True",
+                data: JSON.stringify({ command: 'True', activity: activity}),
                 success: function (data) {
                     console.log('Successful response from HSR backend!')
                     console.log(data)
@@ -339,7 +365,7 @@
                 headers: {
                     "Content-Type": "application/txt",
                 },
-                data: "True",
+                data: JSON.stringify({ command: 'True', activity: activity}),
                 success: function (data) {
                     console.log('Successful response from webcams backend!')
                     console.log(data)
@@ -356,7 +382,7 @@
                 headers: {
                     "Content-Type": "application/txt",
                 },
-                data: "True",
+                data: JSON.stringify({ command: 'True', activity: activity}),
                 success: function (data) {
                     console.log('Successful response from ralt_semantic_event_logger container!')
                     console.log(data)
@@ -372,7 +398,7 @@
                 headers: {
                     "Content-Type": "application/txt",
                 },
-                data: "True",
+                data: JSON.stringify({ command: 'True', activity: activity}),
                 success: function (data) {
                     console.log('Successful response from apple_watch_publisher container!')
                     console.log(data)
