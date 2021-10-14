@@ -414,6 +414,7 @@
         }
 
         function send_stop_cmd(){
+            var activity = 'none';
             $.ajax({
                 url: 'http://127.0.1.1:5002/control',
                 method: "POST",
