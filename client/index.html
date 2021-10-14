@@ -99,6 +99,12 @@
                 <h2>Control</h2>
                 <hr>
 
+                <h3>Set Participant ID</h3>
+                <div class="form-group">
+                    <input type="email" class="form-control" id="participant_id" aria-describedby="participant_id_info" placeholder="Enter Participant ID...">
+                    <button style="width:100%; margin-top:5pt;" class="btn btn-primary" onclick="submit_participant_id()">Submit</button>
+                </div>
+
                 <h3>Manual Recording</h3>
                 <button type="button" style="width:49%;" class="btn btn-success" onclick="send_start_cmd('none')">Start</button>
                 <button type="button" style="width:49%;" class="btn btn-danger" onclick="send_stop_cmd()">Stop</button>
@@ -521,6 +527,93 @@
                 error: function (data) {
                     $("#sensors").append("Either the Signalman backend is unavailable, or the process to merge bag files has failed. Please check the container logs for errors.")
                     console.log('Failed response from main backend!')
+                    console.log(data)
+                }
+            })
+        }
+
+        function submit_participant_id(){
+            participant = $("#participant_id").val()
+            $.ajax({
+                url: 'http://127.0.1.1:5002/participant',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ participant: participant }),
+                success: function (data) {
+                    console.log('Successful response from main backend!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
+                    console.log('Failed response from main backend!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5004/participant',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ participant: participant }),
+                success: function (data) {
+                    console.log('Successful response from HSR backend!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    $("#sensors").append("The Signalman backend (HSR) is unavailable. Please check the container logs for errors.")
+                    console.log('Failed response from HSR backend!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5006/participant',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ participant: participant }),
+                success: function (data) {
+                    console.log('Successful response from webcams backend!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    $("#sensors").append("The Signalman backend (webcams) is unavailable. Please check the container logs for errors.")
+                    console.log('Failed response from webcams backend!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5009/participant',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ participant: participant }),
+                success: function (data) {
+                    console.log('Successful response from ralt_semantic_event_logger container!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    console.log('Failed response from ralt_semantic_event_logger container!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5008/participant',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ participant: participant }),
+                success: function (data) {
+                    console.log('Successful response from apple_watch_publisher container!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    console.log('Failed response from apple_watch_publisher container!')
                     console.log(data)
                 }
             })
