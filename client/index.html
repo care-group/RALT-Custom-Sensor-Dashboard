@@ -110,7 +110,7 @@
 
                 
                 <h3>Mode Select</h3>
-                <button class="tablinks; btn btn-secondary" type="button" onclick="openTabs(event, 'continuous')">Continuous</button>
+                <button class="tablinks; btn btn-secondary" type="button" onclick="openTabs(event, 'continuous')" id="defaultOpen">Continuous</button>
                 <button class="tablinks; btn btn-secondary" type="button" onclick="openTabs(event, 'individual')">Individual</button>
                 
                 <div id="continuous" class="tabcontent">
@@ -708,6 +708,8 @@
             // Show the current tab, and add an "active" class to the button that opened the tab
             document.getElementById(cityName).style.display = "block";
             evt.currentTarget.className += " active";
+
+            document.getElementById("defaultOpen").click();
         }
     </script>
 
