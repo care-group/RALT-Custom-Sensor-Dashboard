@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body onload="update(); document.getElementById("defaultOpen").click();">
+<body onload="update();">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
@@ -285,6 +285,7 @@
                     render_status_container("offline", "apple_watch_publisher")
                 }
             })
+            document.getElementById("defaultOpen").click();
         }
 
         function render_status(data){
