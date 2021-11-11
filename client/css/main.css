@@ -90,3 +90,15 @@ body {
 p.status {
     line-height: 18pt;
 }
+
+/********************************************************/
+/* Activity Recognition UI */
+/********************************************************/
+
+p.har_box {
+    border-style: solid;
+    border-width: 2pt;
+    border-color: grey;
+    border-radius: 5px;
+    padding: 5pt;
+}
