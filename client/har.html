@@ -121,25 +121,6 @@
     }
     function reset(){
         $.ajax({
-            url: 'http://127.0.1.1:5010/reason',
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            data: JSON.stringify({ cmd: "reason" }),
-            success: function (data) {
-                console.log('Successful request to HAR backend!')
-                console.log(data)
-            },
-            error: function (data) {
-                $("#sensors").append("The HAR backend is unavailable. Please check the container logs for errors.")
-                console.log('Failed response from HAR backend!')
-                console.log(data)
-            }
-        })
-    }
-    function reset(){
-        $.ajax({
             url: 'http://127.0.1.1:5010/reset',
             method: "POST",
             headers: {
