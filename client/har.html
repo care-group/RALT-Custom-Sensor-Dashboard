@@ -99,7 +99,7 @@
             }
         })
     }
-    function evidence(){
+    function reason(){
         $.ajax({
             url: 'http://127.0.1.1:5010/reason',
             method: "POST",
@@ -152,7 +152,7 @@
         });
     }
     function render_prediction(data){
-        pred = data["pref"]
+        pred = data["pred"]
         prob = data["prob"]
 
         $( "#prediction" ).empty()
