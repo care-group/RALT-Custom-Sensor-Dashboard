@@ -142,22 +142,22 @@
         })
     }
     function render_evidence(data){
-        evidence = data["evidence"]
+        e_preds = data["e_preds"]
+        e_confs = data["e_confs"]
 
         $( "#evidence" ).empty()
 
-        jQuery.each(topics, function(i, val) {
-            $( "#evidence" ).append(val+"<br>")
+        jQuery.each(e_preds, function(i, item) {
+            $( "#evidence" ).append(e_preds[i] + ":" + e_confs[i] + "<br>")
         });
     }
     function render_prediction(data){
-        prediction = data["prediction"]
+        pred = data["pref"]
+        prob = data["prob"]
 
         $( "#prediction" ).empty()
 
-        jQuery.each(topics, function(i, val) {
-            $( "#prediction" ).append(val)
-        });
+        $( "#prediction" ).append(pred, ':', prob)
     }
     </script>
 
