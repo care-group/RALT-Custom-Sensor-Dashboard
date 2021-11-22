@@ -102,7 +102,7 @@
                 <h2>Control</h2>
                 <hr>
 
-                <h3>Set Participant ID</h3>
+                <h3>Step 1: Set Participant ID</h3>
                 <div class="alert alert-info" role="alert">
                     It is important that you set a Participant ID before beginning any recordings, as this determines the storage location of the files. For example, if you set the ID as 'John', subsequent recordings will be stored in <code>[docker_volume]/output/John</code>.
                 </div>
@@ -112,79 +112,17 @@
                 </div>
 
                 
-                <h3>Mode Select</h3>
-                <button class="tablinks; btn btn-secondary" type="button" onclick="openTabs(event, 'continuous')" id="defaultOpen">Continuous</button>
-                <button class="tablinks; btn btn-secondary" type="button" onclick="openTabs(event, 'individual')">Individual</button>
-                
-                <div id="continuous" class="tabcontent">
-                    <br>
-                    <div class="alert alert-info" role="alert">
-                        In this mode, you can start a continuous recording ('Start'), and then apply labels to the data collected in real time. The applied lablel will be published to the <code>/activty_label</code> topic, so ensure this topic is in the target topic list.
-                    </div>
-
-                    <h3>Start / Stop Recording</h3>
-                    <button type="button" style="width:49%;" class="btn btn-success" onclick="send_start_cmd('none')">Start</button>
-                    <button type="button" style="width:49%;" class="btn btn-danger" onclick="send_stop_cmd()">Stop</button>
-                    <br>
-                    <br>
-    
-                    <h3>Activity Label</h3>
-                    <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_activity_label('prepare_cold_meal')">Prepare Cold Meal</button>
-                    <button type="button" style="width:33%; margin-top:0pt;" class="btn btn-success" onclick="send_activity_label('prepare_hot_meal')">Prepare Hot Meal</button>
-                    <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_activity_label('prepare_cold_drink')">Prepare Cold Drink</button>
-    
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('prepare_hot_drink')">Prepare Hot Drink</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('setting_table')">Setting Table</button>
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('eating_table')">Eating (Table)</button>
-    
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('washing_dishes')">Washing Dishes</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('cleaning_kitchen')">Cleaning (Kitchen)</button>
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('working_table')">Working (Table)</button>
-    
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('watching_tv')">Watching TV</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('reading_sofa')">Reading (Sofa)</button>
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('toileting')">Toileting</button>
-    
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('showering')">Showering</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('dressing')">Dressing</button>
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('reading_bed')">Reading (Bed)</button>
-    
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('sleeping')">Sleeping</button>
+                <h3>Step 2: Labelling</h3>
+                <div class="alert alert-info" role="alert">
+                    Clicking the button below opens the Labelling Control Panel in a new tab. You should ideally arrange things so both pages are open side-by-side, to allow you to monitor the status of RALT Signalman during recording/labelling.
                 </div>
-                <div id="individual" class="tabcontent">
-                    <br>
-                    <div class="alert alert-info" role="alert">
-                        In this mode, you can record on an activity-by-activity basis. Clicking one of the green label buttons will create files in the participant folder already labelled with the activity label. You must end the activity by pressing 'Stop'.
-                    </div>
-
-                    <h3>Activity Label</h3>
-
-                    <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_start_cmd('prepare_cold_meal')">Prepare Cold Meal</button>
-                    <button type="button" style="width:33%; margin-top:0pt;" class="btn btn-success" onclick="send_start_cmd('prepare_hot_meal')">Prepare Hot Meal</button>
-                    <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_activity_label('prepare_cold_drink')">Prepare Cold Drink</button>
-    
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('prepare_hot_drink')">Prepare Hot Drink</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('setting_table')">Setting Table</button>
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('eating_table')">Eating (Table)</button>
-    
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('washing_dishes')">Washing Dishes</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('cleaning_kitchen')">Cleaning (Kitchen)</button>
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('working_table')">Working (Table)</button>
-    
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('watching_tv')">Watching TV</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('reading_sofa')">Reading (Sofa)</button>
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('toileting')">Toileting</button>
-    
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('showering')">Showering</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('dressing')">Dressing</button>
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('reading_bed')">Reading (Bed)</button>
-    
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('sleeping')">Sleeping</button>
-                    <button type="button" style="width:100%; margin-top:5pt;" class="btn btn-danger" onclick="send_stop_cmd()">Stop Activity</button>
-                </div>
+                <button type="button" style="width:100%" type="button" class="btn btn-primary" onclick="window.open('labelling.html');">Click to Open Labelling Control Panel</button>
                 <br><br>
 
-                <h3>Merge Bag Files</h3>
+                <h3>Step 3: Merge Bag Files</h3>
+                <div class="alert alert-info" role="alert">
+                    If you did not utilise the Toyota HSR during your data collection, you can skip this step.
+                </div>
                 <button type="button" style="width:100%;" class="btn btn-primary" onclick="merge_bag_files()">Merge</button>
                 <br>
                 <br>
@@ -490,26 +428,6 @@
             setTimeout(function(){
                 location.reload();
             }, 2000);
-        }
-
-        function send_activity_label(activity){
-            $.ajax({
-                url: 'http://127.0.1.1:5002/update',
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                data: JSON.stringify({ command: 'True', activity: activity}),
-                success: function (data) {
-                    console.log('Successful response from main backend!')
-                    console.log(data)
-                },
-                error: function (data) {
-                    $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
-                    console.log('Failed response from main backend!')
-                    console.log(data)
-                }
-            })
         }
 
         function send_stop_cmd(){

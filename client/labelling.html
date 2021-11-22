@@ -1,0 +1,405 @@
+<head>
+    <title>RALT Signalman Dashboard</title>
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="defaults()">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="assets/ralt_house.png" height=55px></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item inactive">
+                        Labelling Control Panel
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <header class="py-2 mb-5" style="background-image: url('assets/header-pink.png'); background-size: auto 100%; height: 250px;">
+    </header>
+
+    <div class="container">
+        <div class="row" style="margin-top:5%">
+            <div class="col-sm">
+                <h3>Mode Select</h3>
+
+                <button class="tablinks; btn btn-secondary" type="button" onclick="openTabs(event, 'continuous')" id="defaultOpen">Continuous</button>
+                <button class="tablinks; btn btn-secondary" type="button" onclick="openTabs(event, 'individual')">Individual</button>
+
+                <div id="continuous" class="tabcontent">
+                    <br>
+                    <div class="alert alert-info" role="alert">
+                        In this mode, you can start a continuous recording ('Start'), and then apply labels to the data collected in real time. The applied lablel will be published to the <code>/activty_label</code> topic, so ensure this topic is in the target topic list. Object labels will be published to the <code>/object_label</code> topic.
+                    </div>
+
+                    <h3>Start / Stop Recording</h3>
+                    <button type="button" style="width:49%;" class="btn btn-success" onclick="send_start_cmd('none')">Start</button>
+                    <button type="button" style="width:49%;" class="btn btn-danger" onclick="send_stop_cmd()">Stop</button>
+                    <br>
+                    <br>
+
+                    <h3>Activity Label</h3>
+                    <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_activity_label('Relaxing')">Relaxing</button>
+                    <button type="button" style="width:33%; margin-top:0pt;" class="btn btn-success" onclick="send_activity_label('WatchingTV')">Watching TV</button>
+                    <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_activity_label('Sleeping')">Sleeping</button>
+                    
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Working')">Working</button>
+                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('UsingComputer')">Using Computer</button>
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Reading')">Reading</button>
+
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Cooking')">Cooking</button>
+                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('PreparingDrink')">Preparing Drink</button>
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Eating')">Eating</button>
+
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Drinking')">Drinking</button>
+                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('WashingDishes')">Washing Dishes</button>
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Cleaning')">Cleaning</button>
+    
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Bathing')">Bathing</button>
+                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Shaving')">Shaving</button>
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('BrushingTeeth')">Brushing Teeth</button>
+
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Dressing')">Dressing</button>
+                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('TakingMedication')">Taking Medication</button>
+
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Toileting')">Toileting</button>
+                </div>
+
+                <div id="individual" class="tabcontent">
+                    <br>
+                    <div class="alert alert-info" role="alert">
+                        In this mode, you can record on an activity-by-activity basis. Clicking one of the green label buttons will create files in the participant folder already labelled with the activity label. You must end the activity by pressing 'Stop'.
+                    </div>
+
+                    <h3>Activity Label</h3>
+
+                    <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_start_cmd('Relaxing')">Relaxing</button>
+                    <button type="button" style="width:33%; margin-top:0pt;" class="btn btn-success" onclick="send_start_cmd('WatchingTV')">Watching TV</button>
+                    <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_start_cmd('Sleeping')">Sleeping</button>
+                    
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('Working')">Working</button>
+                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('UsingComputer')">Using Computer</button>
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('Reading')">Reading</button>
+
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('Cooking')">Cooking</button>
+                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('PreparingDrink')">Preparing Drink</button>
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('Eating')">Eating</button>
+
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('Drinking')">Drinking</button>
+                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('WashingDishes')">Washing Dishes</button>
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('Cleaning')">Cleaning</button>
+    
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('Bathing')">Bathing</button>
+                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('Shaving')">Shaving</button>
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('BrushingTeeth')">Brushing Teeth</button>
+
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('Dressing')">Dressing</button>
+                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('TakingMedication')">Taking Medication</button>
+                    <button type="button" style="width:100%; margin-top:5pt;" class="btn btn-danger" onclick="send_stop_cmd()">Stop Activity</button>
+                </div>
+                <br>
+
+                <h2>Object Label</h2>
+                <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('Plate')">Plate</button>
+                <button type="button" style="width:33%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('Bowl')">Bowl</button>
+                <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('Fork')">Fork</button>
+
+                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Knife')">Knife</button>
+                <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Spoon')">Spoon</button>
+                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Bootle')">Bottle</button>
+
+                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('WineGlass')">Wine Glass</button>
+                <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Smartphone')">Smartphone</button>
+                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Laptop')">Laptop</button>
+
+                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Keyboard')">Keyboard</button>
+                <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Mouse')">Mouse</button>
+                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Book')">Book</button>
+
+                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Remote')">Remote</button>
+                <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Toothbrush')">Toothbrush</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function defaults(){
+            document.getElementById("defaultOpen").click();
+        }
+
+        function send_start_cmd(activity){
+            $.ajax({
+                url: 'http://127.0.1.1:5002/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ command: 'True', activity: activity}),
+                success: function (data) {
+                    console.log('Successful response from main backend!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
+                    console.log('Failed response from main backend!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5004/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ command: 'True', activity: activity}),
+                success: function (data) {
+                    console.log('Successful response from HSR backend!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    $("#sensors").append("The Signalman backend (HSR) is unavailable. Please check the container logs for errors.")
+                    console.log('Failed response from HSR backend!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5006/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ command: 'True', activity: activity}),
+                success: function (data) {
+                    console.log('Successful response from webcams backend!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    $("#sensors").append("The Signalman backend (webcams) is unavailable. Please check the container logs for errors.")
+                    console.log('Failed response from webcams backend!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5009/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ command: 'True', activity: activity}),
+                success: function (data) {
+                    console.log('Successful response from ralt_semantic_event_logger container!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    console.log('Failed response from ralt_semantic_event_logger container!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5008/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ command: 'True', activity: activity}),
+                success: function (data) {
+                    console.log('Successful response from apple_watch_publisher container!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    console.log('Failed response from apple_watch_publisher container!')
+                    console.log(data)
+                }
+            })
+            setTimeout(function(){
+                location.reload();
+            }, 2000);
+        }
+
+        function send_activity_label(activity){
+            $.ajax({
+                url: 'http://127.0.1.1:5002/update',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ command: 'True', activity: activity}),
+                success: function (data) {
+                    console.log('Successful response from main backend!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
+                    console.log('Failed response from main backend!')
+                    console.log(data)
+                }
+            })
+        }
+
+        function send_stop_cmd(){
+            let activity = 'none';
+            $.ajax({
+                url: 'http://127.0.1.1:5002/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ command: 'False', activity: activity}),
+                success: function (data) {
+                    console.log('Successful response from main backend!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
+                    console.log('Failed response from main backend!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5004/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ command: 'False', activity: activity}),
+                success: function (data) {
+                    console.log('Successful response from HSR backend!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    $("#sensors").append("The Signalman backend (HSR) is unavailable. Please check the container logs for errors.")
+                    console.log('Failed response from HSR backend!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5006/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ command: 'False', activity: activity}),
+                success: function (data) {
+                    console.log('Successful response from webcams backend!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    $("#sensors").append("The Signalman backend (webcams) is unavailable. Please check the container logs for errors.")
+                    console.log('Failed response from webcams backend!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5009/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ command: 'False', activity: activity}),
+                success: function (data) {
+                    console.log('Successful response from ralt_semantic_event_logger container!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    console.log('Failed response from ralt_semantic_event_logger container!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.1.1:5008/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ command: 'False', activity: activity}),
+                success: function (data) {
+                    console.log('Successful response from apple_watch_publisher container!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    console.log('Failed response from apple_watch_publisher container!')
+                    console.log(data)
+                }
+            })
+            setTimeout(function(){
+                location.reload();
+            }, 2000);
+        }
+
+        function send_activity_label(activity){
+            $.ajax({
+                url: 'http://127.0.1.1:5002/update',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ command: 'True', activity: activity}),
+                success: function (data) {
+                    console.log('Successful response from main backend!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
+                    console.log('Failed response from main backend!')
+                    console.log(data)
+                }
+            })
+        }
+
+        function send_object_label(object){
+            $.ajax({
+                url: 'http://127.0.1.1:5002/object',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ command: 'True', object: object}),
+                success: function (data) {
+                    console.log('Successful response from main backend!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
+                    console.log('Failed response from main backend!')
+                    console.log(data)
+                }
+            })
+        }
+    </script>
+
+    <script>
+        function openTabs(evt, cityName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
