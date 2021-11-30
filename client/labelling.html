@@ -36,8 +36,9 @@
             <div class="col-sm">
                 <h3>Mode Select</h3>
 
-                <button class="tablinks; btn btn-secondary" type="button" onclick="openTabs(event, 'continuous')" id="defaultOpen">Continuous</button>
-                <button class="tablinks; btn btn-secondary" type="button" onclick="openTabs(event, 'individual')">Individual</button>
+                <button class="tablinks; btn btn-secondary" type="button" onclick="openTabs(event, 'continuous'); labelDefaults()" id="defaultOpen">Continuous</button>
+                <button class="tablinks; btn btn-secondary" type="button" onclick="openTabs(event, 'individual'); labelDefaults()">Individual</button>
+                <br>
 
                 <div id="continuous" class="tabcontent">
                     <br>
@@ -45,37 +46,74 @@
                         In this mode, you can start a continuous recording ('Start'), and then apply labels to the data collected in real time. The applied lablel will be published to the <code>/activty_label</code> topic, so ensure this topic is in the target topic list. Object labels will be published to the <code>/object_label</code> topic.
                     </div>
 
+                    <h3>Label Set</h3>
+                    <button type="button" class="tablinks_inner; btn btn-secondary" onclick="openLabelTab(event, 'part_1_dec_2021')" id="defaultLabelsOpen">Part 1 (Dec. 2021)</button>
+                    <button type="button" class="tablinks_inner; btn btn-secondary" onclick="openLabelTab(event, 'part_2_dec_2021')">Part 2 (Dec. 2021)</button>
+                    <br>
+                    <br>
+
                     <h3>Start / Stop Recording</h3>
                     <button type="button" style="width:49%;" class="btn btn-success" onclick="send_start_cmd('none')">Start</button>
                     <button type="button" style="width:49%;" class="btn btn-danger" onclick="send_stop_cmd()">Stop</button>
                     <br>
                     <br>
 
-                    <h3>Activity Label</h3>
-                    <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_activity_label('Relaxing')">Relaxing</button>
-                    <button type="button" style="width:33%; margin-top:0pt;" class="btn btn-success" onclick="send_activity_label('WatchingTV')">Watching TV</button>
-                    <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_activity_label('Sleeping')">Sleeping</button>
-                    
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Working')">Working</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('UsingComputer')">Using Computer</button>
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Reading')">Reading</button>
+                    <div id="part_1_dec_2021" class="tabcontent_inner">
+                        <h3>Activity Label</h3>
+                        TBC
+                    </div>
 
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Cooking')">Cooking</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('PreparingDrink')">Preparing Drink</button>
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Eating')">Eating</button>
+                    <div id="part_2_dec_2021" class="tabcontent_inner">
+                        <h3>Activity Label</h3>
+                        <button type="button" style="width:98%; margin-top:0pt;" class="btn btn-success" onclick="send_activity_label('Transitioning')">Transitioning</button>
 
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Drinking')">Drinking</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('WashingDishes')">Washing Dishes</button>
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Cleaning')">Cleaning</button>
-    
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Bathing')">Bathing</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Shaving')">Shaving</button>
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('BrushingTeeth')">Brushing Teeth</button>
+                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Relaxing')">Relaxing</button>
+                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('WatchingTV')">Watching TV</button>
+                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Sleeping')">Sleeping</button>
+                        
+                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Working')">Working</button>
+                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('UsingComputer')">Using Computer</button>
+                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Reading')">Reading</button>
 
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Dressing')">Dressing</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('TakingMedication')">Taking Medication</button>
+                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Cooking')">Cooking</button>
+                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('PreparingDrink')">Preparing Drink</button>
+                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Eating')">Eating</button>
 
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Toileting')">Toileting</button>
+                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Drinking')">Drinking</button>
+                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('WashingDishes')">Washing Dishes</button>
+                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Cleaning')">Cleaning</button>
+        
+                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Bathing')">Bathing</button>
+                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Shaving')">Shaving</button>
+                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('BrushingTeeth')">Brushing Teeth</button>
+
+                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Dressing')">Dressing</button>
+                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('TakingMedication')">Taking Medication</button>
+
+                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Toileting')">Toileting</button>
+                        <br>
+                        <br>
+
+                        <h2>Object Label</h2>
+                        <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('Plate')">Plate</button>
+                        <button type="button" style="width:33%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('Bowl')">Bowl</button>
+                        <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('Fork')">Fork</button>
+        
+                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Knife')">Knife</button>
+                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Spoon')">Spoon</button>
+                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Bootle')">Bottle</button>
+        
+                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('WineGlass')">Wine Glass</button>
+                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Smartphone')">Smartphone</button>
+                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Laptop')">Laptop</button>
+        
+                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Keyboard')">Keyboard</button>
+                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Mouse')">Mouse</button>
+                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Book')">Book</button>
+        
+                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Remote')">Remote</button>
+                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Toothbrush')">Toothbrush</button>
+                    </div>
                 </div>
 
                 <div id="individual" class="tabcontent">
@@ -108,29 +146,31 @@
 
                     <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('Dressing')">Dressing</button>
                     <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('TakingMedication')">Taking Medication</button>
-                    <button type="button" style="width:100%; margin-top:5pt;" class="btn btn-danger" onclick="send_stop_cmd()">Stop Activity</button>
+                    <button type="button" style="width:98%; margin-top:5pt;" class="btn btn-danger" onclick="send_stop_cmd()">Stop Activity</button>
+                    <br>
+                    <br>
+
+                    <h2>Object Label</h2>
+                    <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('Plate')">Plate</button>
+                    <button type="button" style="width:33%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('Bowl')">Bowl</button>
+                    <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('Fork')">Fork</button>
+    
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Knife')">Knife</button>
+                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Spoon')">Spoon</button>
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Bootle')">Bottle</button>
+    
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('WineGlass')">Wine Glass</button>
+                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Smartphone')">Smartphone</button>
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Laptop')">Laptop</button>
+    
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Keyboard')">Keyboard</button>
+                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Mouse')">Mouse</button>
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Book')">Book</button>
+    
+                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Remote')">Remote</button>
+                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Toothbrush')">Toothbrush</button>
                 </div>
                 <br>
-
-                <h2>Object Label</h2>
-                <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('Plate')">Plate</button>
-                <button type="button" style="width:33%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('Bowl')">Bowl</button>
-                <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('Fork')">Fork</button>
-
-                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Knife')">Knife</button>
-                <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Spoon')">Spoon</button>
-                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Bootle')">Bottle</button>
-
-                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('WineGlass')">Wine Glass</button>
-                <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Smartphone')">Smartphone</button>
-                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Laptop')">Laptop</button>
-
-                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Keyboard')">Keyboard</button>
-                <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Mouse')">Mouse</button>
-                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Book')">Book</button>
-
-                <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Remote')">Remote</button>
-                <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Toothbrush')">Toothbrush</button>
             </div>
         </div>
     </div>
@@ -138,6 +178,10 @@
     <script>
         function defaults(){
             document.getElementById("defaultOpen").click();
+        }
+
+        function labelDefaults(){
+            document.getElementById("defaultLabelsOpen").click();
         }
 
         function send_start_cmd(activity){
@@ -381,7 +425,7 @@
     </script>
 
     <script>
-        function openTabs(evt, cityName) {
+        function openTabs(evt, modeName) {
             // Declare all variables
             var i, tabcontent, tablinks;
 
@@ -398,7 +442,28 @@
             }
 
             // Show the current tab, and add an "active" class to the button that opened the tab
-            document.getElementById(cityName).style.display = "block";
+            document.getElementById(modeName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function openLabelTab(evt, labelSetName){
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent_inner");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks_inner");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(labelSetName).style.display = "block";
             evt.currentTarget.className += " active";
         }
     </script>
