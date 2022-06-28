@@ -163,10 +163,6 @@
             });
         }
 
-        function labelDefaults() {
-            document.getElementById("defaultLabelsOpen").click();
-        }
-
         function load_labels() {
             var options_list = document.getElementById("dataList");
             var selected = options_list.value;
@@ -222,15 +218,16 @@
                     console.log(data)
 
                     $("#status_individual").empty();
-                    $("#status_individual").append("<span class='green_box'>" + activity + "</span>");
+                    var msg = "<span class='green_box'>" + activity + "</span>";
+                    $("#status_individual").append(msg);
                 },
                 error: function (data) {
-                    $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
                     console.log('Failed response from main backend!')
                     console.log(data)
 
                     $("#status_individual").empty();
-                    $("#status_individual").append("<span class='red_box'>" + activity + "</span>");
+                    var msg = "<span class='red_box'>" + activity + "</span>"
+                    $("#status_individual").append(msg);
                 }
             })
             $.ajax({
@@ -245,7 +242,6 @@
                     console.log(data)
                 },
                 error: function (data) {
-                    $("#sensors").append("The Signalman backend (HSR) is unavailable. Please check the container logs for errors.")
                     console.log('Failed response from HSR backend!')
                     console.log(data)
                 }
@@ -262,7 +258,6 @@
                     console.log(data)
                 },
                 error: function (data) {
-                    $("#sensors").append("The Signalman backend (webcams) is unavailable. Please check the container logs for errors.")
                     console.log('Failed response from webcams backend!')
                     console.log(data)
                 }
@@ -314,15 +309,16 @@
                     console.log(data)
 
                     $("#status_continuous").empty();
-                    $("#status_continuous").append("<span class='green_box'>" + activity + "</span>");
+                    var msg = "<span class='green_box'>" + activity + "</span>"
+                    $("#status_continuous").append(msg);
                 },
                 error: function (data) {
-                    $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
                     console.log('Failed response from main backend!')
                     console.log(data)
 
                     $("#status_continuous").empty();
-                    $("#status_continuous").append("<span class='red_box'>" + activity + "</span>");
+                    var msg = "<span class='red_box'>" + activity + "</span>"
+                    $("#status_continuous").append(msg);
                 }
             })
         }
@@ -341,7 +337,6 @@
                     console.log(data)
                 },
                 error: function (data) {
-                    $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
                     console.log('Failed response from main backend!')
                     console.log(data)
                 }
@@ -358,7 +353,6 @@
                     console.log(data)
                 },
                 error: function (data) {
-                    $("#sensors").append("The Signalman backend (HSR) is unavailable. Please check the container logs for errors.")
                     console.log('Failed response from HSR backend!')
                     console.log(data)
                 }
@@ -375,7 +369,6 @@
                     console.log(data)
                 },
                 error: function (data) {
-                    $("#sensors").append("The Signalman backend (webcams) is unavailable. Please check the container logs for errors.")
                     console.log('Failed response from webcams backend!')
                     console.log(data)
                 }
@@ -414,26 +407,6 @@
             })
         }
 
-        function send_activity_label(activity) {
-            $.ajax({
-                url: 'http://127.0.1.1:5002/update',
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                data: JSON.stringify({ command: 'True', activity: activity }),
-                success: function (data) {
-                    console.log('Successful response from main backend!')
-                    console.log(data)
-                },
-                error: function (data) {
-                    $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
-                    console.log('Failed response from main backend!')
-                    console.log(data)
-                }
-            })
-        }
-
         function send_object_label(object) {
             $.ajax({
                 url: 'http://127.0.1.1:5002/object',
@@ -447,7 +420,6 @@
                     console.log(data)
                 },
                 error: function (data) {
-                    $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
                     console.log('Failed response from main backend!')
                     console.log(data)
                 }
