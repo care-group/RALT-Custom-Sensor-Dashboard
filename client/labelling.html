@@ -180,10 +180,12 @@
                     let text = client.responseText;
                     var lines = text.split("\n")
                     var count = 1;
+
+                    $("#labelTableContinuous tbody").empty();
+                    $("#labelTableIndividual tbody").empty();
                     lines.forEach(function (item, index) {
                         entry = item.split(",")
                         console.log(entry)
-                        $("#labelTableContinuous tbody").empty();
                         $('#labelTableContinuous tbody').append("<tr>" +
                             "<td>" + "<button type='button' style='width:100%;' class='btn btn-success' onclick='send_activity_label(\"" + entry[0].replace(/\s/g, "") + "\")'>" + entry[0] + "</button>" + "</td>" +
                             "<td style='vertical-align: middle;'>" + count + "</td>" +
@@ -192,7 +194,6 @@
                             "</tr>"
                         )
                         
-                        $("#labelTableIndividual tbody").empty();
                         $('#labelTableIndividual tbody').append("<tr>" +
                             "<td>" + "<button type='button' style='width:100%;' class='btn btn-success' onclick='send_start_cmd(\"" + entry[0].replace(/\s/g, "") + "\")'>" + entry[0] + "</button>" + "</td>" +
                             "<td style='vertical-align: middle;'>" + count + "</td>" +
