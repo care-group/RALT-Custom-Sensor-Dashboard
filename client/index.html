@@ -226,24 +226,24 @@
                     render_status_container("offline", "apple_watch_publisher")
                 }
             })
-            $.ajax({
-                url: 'http://127.0.1.1:5010/status',
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/txt",
-                },
-                data: "",
-                success: function (data) {
-                    console.log('Successful response from ralt_har_mln backend!')
-                    console.log(data)
-                    render_status_container("online", "ralt_har_mln")
-                },
-                error: function (data) {
-                    console.log('Failed response from ralt_har_mln backend!')
-                    console.log(data)
-                    render_status_container("offline", "ralt_har_mln")
-                }
-            })
+            // $.ajax({
+            //     url: 'http://127.0.1.1:5010/status',
+            //     method: "GET",
+            //     headers: {
+            //         "Content-Type": "application/txt",
+            //     },
+            //     data: "",
+            //     success: function (data) {
+            //         console.log('Successful response from ralt_har_mln backend!')
+            //         console.log(data)
+            //         render_status_container("online", "ralt_har_mln")
+            //     },
+            //     error: function (data) {
+            //         console.log('Failed response from ralt_har_mln backend!')
+            //         console.log(data)
+            //         render_status_container("offline", "ralt_har_mln")
+            //     }
+            // })
             document.getElementById("defaultOpen").click();
         }
 
@@ -332,13 +332,13 @@
                     $( "#container_status" ).append("<span class='red_box'>ralt_semantic_event_logger</span><br>")
                 }
             }
-            if(container == "ralt_har_mln"){
-                if(status == "online"){
-                    $( "#container_status" ).append("<span class='green_box'>ralt_har_mln</span><br>")
-                } else {
-                    $( "#container_status" ).append("<span class='red_box'>ralt_har_mln</span><br>")
-                }
-            }
+            // if(container == "ralt_har_mln"){
+            //     if(status == "online"){
+            //         $( "#container_status" ).append("<span class='green_box'>ralt_har_mln</span><br>")
+            //     } else {
+            //         $( "#container_status" ).append("<span class='red_box'>ralt_har_mln</span><br>")
+            //     }
+            // }
         }
 
         function send_start_cmd(activity){
