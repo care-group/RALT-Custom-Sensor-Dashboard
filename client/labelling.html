@@ -222,8 +222,7 @@
                     console.log(data)
 
                     $("#status_individual").empty();
-                    var msg = "<span class='green_box'>" + activity + "</span>";
-                    $("#status_individual").append(msg);
+                    $("#status_individual").append("<span class='green_box'>" + activity + "</span>");
                 },
                 error: function (data) {
                     $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
@@ -231,8 +230,7 @@
                     console.log(data)
 
                     $("#status_individual").empty();
-                    var msg = "<span class='red_box'>" + activity + "</span>";
-                    $("#status_individual").append(msg);
+                    $("#status_individual").append("<span class='red_box'>" + activity + "</span>");
                 }
             })
             $.ajax({
@@ -316,8 +314,7 @@
                     console.log(data)
 
                     $("#status_continuous").empty();
-                    var msg = "<span class='green_box'>" + activity + "</span>";
-                    $("#status_continuous").append(msg);
+                    $("#status_continuous").append("<span class='green_box'>" + activity + "</span>");
                 },
                 error: function (data) {
                     $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
@@ -325,8 +322,7 @@
                     console.log(data)
 
                     $("#status_continuous").empty();
-                    var msg = "<span class='red_box'>" + activity + "</span>";
-                    $("#status_continuous").append(msg);
+                    $("#status_continuous").append("<span class='red_box'>" + activity + "</span>");
                 }
             })
         }
