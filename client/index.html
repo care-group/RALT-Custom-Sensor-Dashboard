@@ -133,7 +133,7 @@
     <script>
         function update(){
             $.ajax({
-                url: 'http://127.0.1.1:5002/status',
+                url: 'http://192.168.130:5002/status',
                 method: "GET",
                 headers: {
                     "Content-Type": "application/txt",
@@ -153,7 +153,7 @@
                 }
             })
             $.ajax({
-                url: 'http://127.0.1.1:5004/status',
+                url: 'http://192.168.1.130:5004/status',
                 method: "GET",
                 headers: {
                     "Content-Type": "application/txt",
@@ -172,7 +172,7 @@
                 }
             })
             $.ajax({
-                url: 'http://127.0.1.1:5006/status',
+                url: 'http://192.168.1.130:5006/status',
                 method: "GET",
                 headers: {
                     "Content-Type": "application/txt",
@@ -191,7 +191,7 @@
                 }
             })
             $.ajax({
-                url: 'http://127.0.1.1:5009/status',
+                url: 'http://192.168.1.130:5009/status',
                 method: "GET",
                 headers: {
                     "Content-Type": "application/txt",
@@ -209,7 +209,7 @@
                 }
             })
             $.ajax({
-                url: 'http://127.0.1.1:5008/status',
+                url: 'http://192.168.1.130:5008/status',
                 method: "GET",
                 headers: {
                     "Content-Type": "application/txt",
@@ -227,7 +227,7 @@
                 }
             })
             // $.ajax({
-            //     url: 'http://127.0.1.1:5010/status',
+            //     url: 'http://192.168.1.130:5010/status',
             //     method: "GET",
             //     headers: {
             //         "Content-Type": "application/txt",
@@ -343,7 +343,7 @@
 
         function send_start_cmd(activity){
             $.ajax({
-                url: 'http://127.0.1.1:5002/control',
+                url: 'http://192.168.1.130:5002/control',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -360,7 +360,7 @@
                 }
             })
             $.ajax({
-                url: 'http://127.0.1.1:5004/control',
+                url: 'http://192.168.1.130:5004/control',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -377,7 +377,7 @@
                 }
             })
             $.ajax({
-                url: 'http://127.0.1.1:5006/control',
+                url: 'http://192.168.1.130:5006/control',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -394,7 +394,7 @@
                 }
             })
             $.ajax({
-                url: 'http://127.0.1.1:5009/control',
+                url: 'http://192.168.1.130:5009/control',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -410,7 +410,7 @@
                 }
             })
             $.ajax({
-                url: 'http://127.0.1.1:5008/control',
+                url: 'http://192.168.1.130:5008/control',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -433,7 +433,7 @@
         function send_stop_cmd(){
             let activity = 'none';
             $.ajax({
-                url: 'http://127.0.1.1:5002/control',
+                url: 'http://192.168.1.130:5002/control',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -450,7 +450,7 @@
                 }
             })
             $.ajax({
-                url: 'http://127.0.1.1:5004/control',
+                url: 'http://192.168.1.130:5004/control',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -467,7 +467,7 @@
                 }
             })
             $.ajax({
-                url: 'http://127.0.1.1:5006/control',
+                url: 'http://192.168.1.130:5006/control',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -484,7 +484,7 @@
                 }
             })
             $.ajax({
-                url: 'http://127.0.1.1:5009/control',
+                url: 'http://192.168.1.130:5009/control',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -500,7 +500,7 @@
                 }
             })
             $.ajax({
-                url: 'http://127.0.1.1:5008/control',
+                url: 'http://192.168.1.130:5008/control',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -522,7 +522,7 @@
 
         function merge_bag_files(){
             $.ajax({
-                url: 'http://127.0.1.1:5002/merge',
+                url: 'http://192.168.1.130:5002/merge',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/txt",
@@ -546,7 +546,7 @@
         function submit_participant_id(){
             participant = $("#participant_id").val()
             $.ajax({
-                url: 'http://127.0.1.1:5002/participant',
+                url: 'http://192.168.1.130:5002/participant',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -563,7 +563,7 @@
                 }
             })
             $.ajax({
-                url: 'http://127.0.1.1:5004/participant',
+                url: 'http://192.168.1.130:5004/participant',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -580,7 +580,7 @@
                 }
             })
             $.ajax({
-                url: 'http://127.0.1.1:5006/participant',
+                url: 'http://192.168.1.130:5006/participant',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -597,7 +597,7 @@
                 }
             })
             $.ajax({
-                url: 'http://127.0.1.1:5009/participant',
+                url: 'http://192.168.1.130:5009/participant',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -613,7 +613,7 @@
                 }
             })
             $.ajax({
-                url: 'http://127.0.1.1:5008/participant',
+                url: 'http://192.168.1.130:5008/participant',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
