@@ -183,6 +183,7 @@
                     lines.forEach(function (item, index) {
                         entry = item.split(",")
                         console.log(entry)
+                        $("#labelTableContinuous").empty();
                         $('#labelTableContinuous tbody').append("<tr>" +
                             "<td>" + "<button type='button' style='width:100%;' class='btn btn-success' onclick='send_activity_label(\"" + entry[0].replace(/\s/g, "") + "\")'>" + entry[0] + "</button>" + "</td>" +
                             "<td style='vertical-align: middle;'>" + count + "</td>" +
@@ -190,7 +191,8 @@
                             "<td style='vertical-align: middle;'>" + entry[2] + "</td>" +
                             "</tr>"
                         )
-
+                        
+                        $("#labelTableIndividual").empty();
                         $('#labelTableIndividual tbody').append("<tr>" +
                             "<td>" + "<button type='button' style='width:100%;' class='btn btn-success' onclick='send_start_cmd(\"" + entry[0].replace(/\s/g, "") + "\")'>" + entry[0] + "</button>" + "</td>" +
                             "<td style='vertical-align: middle;'>" + count + "</td>" +
@@ -198,7 +200,7 @@
                             "<td style='vertical-align: middle;'>" + entry[2] + "</td>" +
                             "</tr>"
                         )
-                        
+
                         count = count + 1;
                     });
                 }
