@@ -32,17 +32,6 @@
     display: none;
 }
 
-td, tr, th {
-    font-size: 11pt;
-}
-
-td {
-    text-align: center;
-    background-color: grey;
-    border-width: 1pt;
-    border-style: solid;
-}
-
 .book_button {
     display: none;
 }
