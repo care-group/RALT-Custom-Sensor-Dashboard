@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/main.css">
+    <!-- <link rel="stylesheet" href="css/main.css"> -->
 </head>
 
 <body onload="defaults()">
@@ -27,204 +27,114 @@
             </div>
         </div>
     </nav>
-    
-    <header class="py-2 mb-5" style="background-image: url('assets/header-pink.png'); background-size: auto 100%; height: 250px;">
+
+    <header class="py-2 mb-5"
+        style="background-image: url('assets/header-pink.png'); background-size: auto 100%; height: 250px;">
     </header>
 
     <div class="container">
         <div class="row" style="margin-top:5%">
             <div class="col-sm">
+                <h3>Upload Label Set</h3>
+                <form action="upload.php" method="post" enctype="multipart/form-data">
+                    <label for="formFile" class="form-label">Upload a new labels file:</label><br>
+                    <input type="file" name="fileToUpload" id="formFile">
+                    <input type="submit" class="tablinks_inner; btn btn-secondary" value="Upload" name="submit"><br>
+                </form>
+            </div>
+            <div class="col-sm">
+                <h3>Select Label Set</h3>
+                <label for="datalistOptions" class="form-label">Or select an existing file:</label><br>
+                <input list="datalistOptions" id="dataList" placeholder="Type to search...">
+                <datalist id="datalistOptions">
+                </datalist>
+                <button type="button" class="btn btn-secondary" name="load" onclick="load_labels()">Load</button><br>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+
                 <h3>Mode Select</h3>
 
-                <button class="tablinks; btn btn-secondary" type="button" onclick="openTabs(event, 'continuous'); labelDefaults()" id="defaultOpen">Continuous</button>
-                <button class="tablinks; btn btn-secondary" type="button" onclick="openTabs(event, 'individual'); labelDefaults()">Individual</button>
+                <button class="tablinks; btn btn-secondary" type="button"
+                    onclick="openTabs(event, 'continuous'); labelDefaults()" id="defaultOpen">Continuous</button>
+                <button class="tablinks; btn btn-secondary" type="button"
+                    onclick="openTabs(event, 'individual'); labelDefaults()">Individual</button>
                 <br>
 
                 <div id="continuous" class="tabcontent">
                     <br>
                     <div class="alert alert-info" role="alert">
-                        In this mode, you can start a continuous recording ('Start'), and then apply labels to the data collected in real time. The applied lablel will be published to the <code>/activty_label</code> topic, so ensure this topic is in the target topic list. Object labels will be published to the <code>/object_label</code> topic.
+                        In this mode, you can start a continuous recording ('Start'), and then apply labels to the data
+                        collected in real time. The applied lablel will be published to the <code>/activty_label</code>
+                        topic, so ensure this topic is in the target topic list. Object labels will be published to the
+                        <code>/object_label</code> topic.
                     </div>
-
-                    <h3>Label Set</h3>
-                    <button type="button" class="tablinks_inner; btn btn-secondary" onclick="openLabelTab(event, 'part_1_dec_2021')" id="defaultLabelsOpen">Part 1 (Dec. 2021)</button>
-                    <button type="button" class="tablinks_inner; btn btn-secondary" onclick="openLabelTab(event, 'part_2_dec_2021')">Part 2 (Dec. 2021)</button>
-                    <br>
-                    <br>
 
                     <h3>Start / Stop Recording</h3>
-                    <button type="button" style="width:49%;" class="btn btn-success" onclick="send_start_cmd('none')">Start</button>
-                    <button type="button" style="width:49%;" class="btn btn-danger" onclick="send_stop_cmd()">Stop</button>
+                    <button type="button" style="width:49%;" class="btn btn-success"
+                        onclick="send_start_cmd('none')">Start</button>
+                    <button type="button" style="width:49%;" class="btn btn-danger"
+                        onclick="send_stop_cmd()">Stop</button>
                     <br>
                     <br>
 
-                    <div id="part_1_dec_2021" class="tabcontent_inner">
-                        <h3>Activity Label</h3>
-                        <button type="button" style="width:98%; margin-top:0pt;" class="btn btn-success" onclick="send_activity_label('Transitioning')">Transitioning</button>
-                        
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('PrepareTea')">Prepare Tea</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('PrepareSandwich')">Prepare Sandwich</button>
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('PrepareCereal')">Prepare Cereal</button>
-                    
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('SetTable')">Set Table</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('WashDishes')">Wash Dishes</button>
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('CleanKitchen')">Clean Kitchen</button>
-                        <br>
-                        <br>
-                        
-                        <h3>Object Label</h3>
-                        <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('PlateOrange')">Plate (Orange)</button>
-                        <button type="button" style="width:33%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('PlatePurple')">Plate (Purple)</button>
-                        <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('PlateBlue')">Plate (Blue)</button>
-        
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('BowlGrey')">Bowl (Grey)</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('BowlGreen')">Bowl (Green)</button>
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('BowlPink')">Bowl (Pink)</button>
-                    
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('ForkRed')">Fork (Red)</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('ForkGreen')">Fork (Green)</button>
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('KinfeRed')">Knife (Red)</button>
-                    
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('KnifeGreen')">Knife (Green)</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('SpoonRed')">Spoon (Red)</button>
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('SpoonGreen')">Spoon (Green)</button>
-                        
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('MugCoral')">Mug (Coral)</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('MugSkyBlue')">Mug (Sky Blue)</button>
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('MugBlackWhite')">Mug (Black/White Spots)</button>
-                    
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Kettle')">Kettle</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Sugar')">Sugar</button>
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Teabags')">Teabags</button>
-                        
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Milk')">Milk</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Bread')">Bread</button>
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Cheese')">Cheese</button>
-                        
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Ham')">Ham</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Butter')">Butter</button>
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Cereal')">Cereal</button>
-                        
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Honey')">Honey</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Scrubber')">Scrubber</button>
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('DishSoap')">Dish Soap</button>
-                        
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Cloth')">Cloth</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('BinBag')">Bin Bag</button>
-                    </div>
+                    <h3>Label Status</h3>
+                    <code id="status_continuous">
+                        No label selected.
+                    </code>
+                    <br>
+                    <br>
 
-                    <div id="part_2_dec_2021" class="tabcontent_inner">
+                    <div id="continuous_labels" class="tabcontent_inner">
                         <h3>Activity Label</h3>
-                        <button type="button" style="width:98%; margin-top:0pt;" class="btn btn-success" onclick="send_activity_label('Transitioning')">Transitioning</button>
-                        
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Sleeping')">Sleeping</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Dressing')">Dressing</button>
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Cooking')">Cooking</button>
-                        
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('PreparingDrink')">Preparing Drink</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('SettingTable')">Setting Table</button>
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('EatingDrinking')">Eating &amp; Drinking</button>
-                        
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('WashingDishes')">Washing Dishes</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Tidying')">Tidying</button>
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Working')">Working</button>
-                        
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('WatchingTV')">Watching TV</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_activity_label('Reading')">Reading</button>
-                        <br>
-                        <br>
-
-                        <h3>Object Label</h3>
-                        <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('Plate')">Plate</button>
-                        <button type="button" style="width:33%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('Bowl')">Bowl</button>
-                        <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('Mug')">Mug</button>
-                        
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Fork')">Fork</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Knife')">Knife</button>
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Spoon')">Spoon</button>
-                        
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Milk')">Milk</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Teabags')">Teabags</button>
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Sugar')">Sugar</button>
-                        
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Kettle')">Kettle</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Cheese')">Cheese</button>
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Ham')">Ham</button>
-                        
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Bread')">Bread</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Butter')">Butter</button>
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Scrubber')">Scrubber</button>
-                        
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('DishSoap')">Dish Soap</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Cloth')">Cloth</button>
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('BinBag')">Bin Bag</button>
-                        
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Smartphone')">Smartphone</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Laptop')">Laptop</button>
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Notepad')">Notepad</button>
-                        
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Pen')">Pen</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Remote')">Remote</button>
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Book')">Book</button>
-                        
-                        <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Shirt')">Shirt</button>
-                        <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Trousers')">Trousers</button>
+                        <table id="labelTableContinuous" class="table">
+                            <thead>
+                                <tr>
+                                    <th width="20%" scope="col">Select</th>
+                                    <th width="10%" scope="col">Step</th>
+                                    <th scope="col">Description</th>
+                                    <th width="15%" scope="col">Min. Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
                 <div id="individual" class="tabcontent">
                     <br>
                     <div class="alert alert-info" role="alert">
-                        In this mode, you can record on an activity-by-activity basis. Clicking one of the green label buttons will create files in the participant folder already labelled with the activity label. You must end the activity by pressing 'Stop'.
+                        In this mode, you can record on an activity-by-activity basis. Clicking one of the green label
+                        buttons will create files in the participant folder already labelled with the activity label.
+                        You must end the activity by pressing 'Stop'.
                     </div>
 
-                    <h3>Activity Label</h3>
-
-                    <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_start_cmd('Relaxing')">Relaxing</button>
-                    <button type="button" style="width:33%; margin-top:0pt;" class="btn btn-success" onclick="send_start_cmd('WatchingTV')">Watching TV</button>
-                    <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_start_cmd('Sleeping')">Sleeping</button>
-                    
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('Working')">Working</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('UsingComputer')">Using Computer</button>
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('Reading')">Reading</button>
-
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('Cooking')">Cooking</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('PreparingDrink')">Preparing Drink</button>
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('Eating')">Eating</button>
-
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('Drinking')">Drinking</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('WashingDishes')">Washing Dishes</button>
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('Cleaning')">Cleaning</button>
-    
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('Bathing')">Bathing</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('Shaving')">Shaving</button>
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('BrushingTeeth')">Brushing Teeth</button>
-
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('Dressing')">Dressing</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_start_cmd('TakingMedication')">Taking Medication</button>
-                    <button type="button" style="width:98%; margin-top:5pt;" class="btn btn-danger" onclick="send_stop_cmd()">Stop Activity</button>
+                    <h3>Label Status</h3>
+                    <code id="status_individual">
+                            No label selected.
+                        </code>
                     <br>
                     <br>
 
-                    <h3>Object Label</h3>
-                    <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('Plate')">Plate</button>
-                    <button type="button" style="width:33%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('Bowl')">Bowl</button>
-                    <button type="button" style="width:32%; margin-top:0pt;" class="btn btn-success" onclick="send_object_label('Fork')">Fork</button>
-    
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Knife')">Knife</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Spoon')">Spoon</button>
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Bottle')">Bottle</button>
-    
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Ham')">Wine Glass</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Smartphone')">Smartphone</button>
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Laptop')">Laptop</button>
-    
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Keyboard')">Keyboard</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Mouse')">Mouse</button>
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Book')">Book</button>
-    
-                    <button type="button" style="width:32%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Remote')">Remote</button>
-                    <button type="button" style="width:33%; margin-top:5pt;" class="btn btn-success" onclick="send_object_label('Toothbrush')">Toothbrush</button>
+                    <div id="individual_labels" class="tabcontent_inner">
+                        <h3>Activity Label</h3>
+                        <table id="labelTableIndividual" class="table">
+                            <thead>
+                                <tr>
+                                    <th width="20%" scope="col">Select</th>
+                                    <th width="10%" scope="col">Step</th>
+                                    <th scope="col">Description</th>
+                                    <th width="15%" scope="col">Min. Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
                 <br>
             </div>
@@ -232,30 +142,94 @@
     </div>
 
     <script>
-        function defaults(){
+        function defaults() {
             document.getElementById("defaultOpen").click();
+            $.ajax({
+                url: "list_files.php",
+                type: "POST",
+                success: function (output) {
+                    output = JSON.parse(output)
+                    output = Object.keys(output).map(function (_) { return output[_]; })
+                    console.log(output);
+
+                    var list = document.getElementById('datalistOptions');
+
+                    output.forEach(function (item) {
+                        var option = document.createElement('option');
+                        option.value = item;
+                        list.appendChild(option);
+                    });
+                }
+            });
         }
 
-        function labelDefaults(){
+        function labelDefaults() {
             document.getElementById("defaultLabelsOpen").click();
         }
 
-        function send_start_cmd(activity){
+        function load_labels() {
+            var options_list = document.getElementById("dataList");
+            var selected = options_list.value;
+
+            var client = new XMLHttpRequest();
+            var file = 'labels/' + selected;
+            console.log(file)
+            client.open('GET', file);
+            client.onreadystatechange = function () {
+                if (client.readyState === 4) {
+                    let text = client.responseText;
+                    var lines = text.split("\n")
+                    var count = 1;
+                    lines.forEach(function (item, index) {
+                        entry = item.split(",")
+                        console.log(entry)
+                        $('#labelTableContinuous tbody').append("<tr>" +
+                            "<td>" + "<button type='button' style='width:100%;' class='btn btn-success' onclick='send_activity_label(\"" + entry[0].replace(/\s/g, "") + "\")'>" + entry[0] + "</button>" + "</td>" +
+                            "<td style='vertical-align: middle;'>" + count + "</td>" +
+                            "<td style='vertical-align: middle;'>" + entry[1] + "</td>" +
+                            "<td style='vertical-align: middle;'>" + entry[2] + "</td>" +
+                            "</tr>"
+                        )
+
+                        $('#labelTableIndividual tbody').append("<tr>" +
+                            "<td>" + "<button type='button' style='width:100%;' class='btn btn-success' onclick='send_start_cmd(\"" + entry[0].replace(/\s/g, "") + "\")'>" + entry[0] + "</button>" + "</td>" +
+                            "<td style='vertical-align: middle;'>" + count + "</td>" +
+                            "<td style='vertical-align: middle;'>" + entry[1] + "</td>" +
+                            "<td style='vertical-align: middle;'>" + entry[2] + "</td>" +
+                            "</tr>"
+                        )
+                        
+                        count = count + 1;
+                    });
+                }
+            }
+            client.send();
+        }
+
+        function send_start_cmd(activity) {
             $.ajax({
                 url: 'http://127.0.1.1:5002/control',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'True', activity: activity}),
+                data: JSON.stringify({ command: 'True', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from main backend!')
                     console.log(data)
+
+                    $("#status_individual").empty();
+                    var msg = "<span class='green_box'>" + activity + "</span>";
+                    $("#status_individual").append(msg);
                 },
                 error: function (data) {
                     $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
                     console.log('Failed response from main backend!')
                     console.log(data)
+
+                    $("#status_individual").empty();
+                    var msg = "<span class='red_box'>" + activity + "</span>";
+                    $("#status_individual").append(msg);
                 }
             })
             $.ajax({
@@ -264,7 +238,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'True', activity: activity}),
+                data: JSON.stringify({ command: 'True', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from HSR backend!')
                     console.log(data)
@@ -281,7 +255,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'True', activity: activity}),
+                data: JSON.stringify({ command: 'True', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from webcams backend!')
                     console.log(data)
@@ -298,7 +272,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'True', activity: activity}),
+                data: JSON.stringify({ command: 'True', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from ralt_semantic_event_logger container!')
                     console.log(data)
@@ -314,7 +288,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'True', activity: activity}),
+                data: JSON.stringify({ command: 'True', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from apple_watch_publisher container!')
                     console.log(data)
@@ -326,27 +300,35 @@
             })
         }
 
-        function send_activity_label(activity){
+        function send_activity_label(activity) {
             $.ajax({
                 url: 'http://127.0.1.1:5002/update',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'True', activity: activity}),
+                data: JSON.stringify({ command: 'True', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from main backend!')
                     console.log(data)
+
+                    $("#status_continuous").empty();
+                    var msg = "<span class='green_box'>" + activity + "</span>";
+                    $("#status_continuous").append(msg);
                 },
                 error: function (data) {
                     $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
                     console.log('Failed response from main backend!')
                     console.log(data)
+
+                    $("#status_continuous").empty();
+                    var msg = "<span class='red_box'>" + activity + "</span>";
+                    $("#status_continuous").append(msg);
                 }
             })
         }
 
-        function send_stop_cmd(){
+        function send_stop_cmd() {
             let activity = 'none';
             $.ajax({
                 url: 'http://127.0.1.1:5002/control',
@@ -354,7 +336,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'False', activity: activity}),
+                data: JSON.stringify({ command: 'False', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from main backend!')
                     console.log(data)
@@ -371,7 +353,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'False', activity: activity}),
+                data: JSON.stringify({ command: 'False', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from HSR backend!')
                     console.log(data)
@@ -388,7 +370,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'False', activity: activity}),
+                data: JSON.stringify({ command: 'False', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from webcams backend!')
                     console.log(data)
@@ -405,7 +387,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'False', activity: activity}),
+                data: JSON.stringify({ command: 'False', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from ralt_semantic_event_logger container!')
                     console.log(data)
@@ -421,7 +403,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'False', activity: activity}),
+                data: JSON.stringify({ command: 'False', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from apple_watch_publisher container!')
                     console.log(data)
@@ -433,14 +415,14 @@
             })
         }
 
-        function send_activity_label(activity){
+        function send_activity_label(activity) {
             $.ajax({
                 url: 'http://127.0.1.1:5002/update',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'True', activity: activity}),
+                data: JSON.stringify({ command: 'True', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from main backend!')
                     console.log(data)
@@ -453,14 +435,14 @@
             })
         }
 
-        function send_object_label(object){
+        function send_object_label(object) {
             $.ajax({
                 url: 'http://127.0.1.1:5002/object',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'True', object: object}),
+                data: JSON.stringify({ command: 'True', object: object }),
                 success: function (data) {
                     console.log('Successful response from main backend!')
                     console.log(data)
@@ -496,7 +478,7 @@
             evt.currentTarget.className += " active";
         }
 
-        function openLabelTab(evt, labelSetName){
+        function openLabelTab(evt, labelSetName) {
             // Declare all variables
             var i, tabcontent, tablinks;
 

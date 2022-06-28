@@ -1,0 +1,2 @@
+Sleeping,Sleep on the bed,N/A
+Watching TV, Sit on sofa,N/A
