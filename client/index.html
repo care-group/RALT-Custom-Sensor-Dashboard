@@ -52,7 +52,12 @@
                 <hr>
 
                 <h3>Target Topics</h3>
-                <pre><samp id="topics"></samp></pre>
+                <label><strong>Robot 1</strong></label>
+                <pre><samp id="topics_robot_1"></samp></pre>
+                <label><strong>Robot 2</strong></label>
+                <pre><samp id="topics_robot_2"></samp></pre>
+                <label><strong>Other</strong></label>
+                <pre><samp id="topics_other"></samp></pre>
                 <div class="alert alert-warning" role="alert">
                     These are the topics that RALT Signalman will attempt to record. It is not a guarantee that they are online. Validate that your topics are available using <code>rostopic list</code> on the host.
                 </div>
@@ -250,11 +255,21 @@
         function render_status(data){
             bagfile = data["bagfile"]
             running = data["running"]
-            topics = data["topics"]
+            topics_robot_1 = data["topics_robot_1"]
+            topics_robot_2 = data["topics_robot_2"]
+            topics_other = data["topics_other"]
             merged_bagfile = data["merged_bagfile"]
 
-            jQuery.each(topics, function(i, val) {
-                $( "#topics" ).append(val+"<br>")
+            jQuery.each(topics_robot_1, function(i, val) {
+                $( "#topics_robot_1" ).append(val+"<br>")
+            });
+
+            jQuery.each(topics_robot_2, function(i, val) {
+                $( "#topics_robot_2" ).append(val+"<br>")
+            });
+
+            jQuery.each(topics_other, function(i, val) {
+                $( "#topics_other" ).append(val+"<br>")
             });
 
             $( "#status" ).empty()
