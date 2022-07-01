@@ -14,35 +14,21 @@
 
 <body onload="update();">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#"><img src="assets/ralt_house.png" height=55px></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Control</a>
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item inactive">
-                        <a class="nav-link" href='status.html'>Sensor Status</a>
-                    </li>
-                    <!-- <li class="nav-item inactive">
-                        <a class="nav-link" href='har.html'>Activity Recognition</a>
-                    </li> -->
-                    <li class="nav-item inactive">
-                        <a class="nav-link" href='test.html'>Sensor Test</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div class="container" style="margin-bottom:-18pt;">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                <img src="assets/ralt_house.png" height=55px>
+            </a>
 
-    <header class="py-2 mb-5" style="background-image: url('assets/header-pink.png'); background-size: auto 100%; height: 250px;">
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-right mb-md-0">
+                <li><a href="#" class="nav-link px-2 link-secondary">Control Panel</a></li>
+                <li><a href="status.html" class="nav-link px-2 link-dark">Sensor Status</a></li>
+            </ul>
+        </header>
+    </div>
+
+    <header class="py-2 mb-5"
+        style="background-image: url('assets/header-pink.png'); background-size: auto 100%; height: 250px;">
     </header>
 
     <div class="container">
@@ -59,7 +45,8 @@
                 <label><strong>Other</strong></label>
                 <pre><samp id="topics_other"></samp></pre>
                 <div class="alert alert-warning" role="alert">
-                    These are the topics that RALT Signalman will attempt to record. It is not a guarantee that they are online. Validate that your topics are available using <code>rostopic list</code> on the host.
+                    These are the topics that RALT Signalman will attempt to record. It is not a guarantee that they are
+                    online. Validate that your topics are available using <code>rostopic list</code> on the host.
                 </div>
 
                 <h3>Recording Status</h3>
@@ -109,34 +96,62 @@
 
                 <h3>Step 1: Set Participant ID</h3>
                 <div class="alert alert-info" role="alert">
-                    It is important that you set a Participant ID before beginning any recordings, as this determines the storage location of the files. For example, if you set the ID as 'John', subsequent recordings will be stored in <code>[docker_volume]/output/John</code>.
+                    It is important that you set a Participant ID before beginning any recordings, as this determines
+                    the storage location of the files. For example, if you set the ID as 'John', subsequent recordings
+                    will be stored in <code>[docker_volume]/output/John</code>.
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" id="participant_id" aria-describedby="participant_id_info" placeholder="Enter Participant ID...">
-                    <button style="width:100%; margin-top:5pt;" class="btn btn-primary" onclick="submit_participant_id()">Submit</button>
+                    <input type="email" class="form-control" id="participant_id" aria-describedby="participant_id_info"
+                        placeholder="Enter Participant ID...">
+                    <button style="width:100%; margin-top:5pt;" class="btn btn-primary"
+                        onclick="submit_participant_id()">Submit</button>
                 </div>
+                <br>
 
-                
+
                 <h3>Step 2: Labelling</h3>
                 <div class="alert alert-info" role="alert">
-                    Clicking the button below opens the Labelling Control Panel in a new tab. You should ideally arrange things so both pages are open side-by-side, to allow you to monitor the status of RALT Signalman during recording/labelling.
+                    Clicking the button below opens the Labelling Control Panel in a new tab. You should ideally arrange
+                    things so both pages are open side-by-side, to allow you to monitor the status of RALT Signalman
+                    during recording/labelling.
                 </div>
-                <button type="button" style="width:100%" type="button" class="btn btn-primary" onclick="window.open('labelling.html');">Click to Open Labelling Control Panel</button>
-                <br><br>
+                <button type="button" style="width:100%" type="button" class="btn btn-primary"
+                    onclick="window.open('labelling.html');">Click to Open Labelling Control Panel</button>
+                <br>
+                <br>
 
                 <h3>Step 3: Merge Bag Files</h3>
                 <div class="alert alert-info" role="alert">
                     If you did not utilise a second robot (Robot 2) during your data collection, you can skip this step.
                 </div>
-                <button type="button" style="width:100%;" class="btn btn-primary" onclick="merge_bag_files()">Merge</button>
+                <button type="button" style="width:100%;" class="btn btn-primary"
+                    onclick="merge_bag_files()">Merge</button>
                 <br>
                 <br>
             </div>
         </div>
     </div>
 
+    <div class="container">
+        <br>
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <span class="mb-3 mb-md-0 text-muted">&copy; 2022 Ronnie Smith.</span>
+            </div>
+
+            <ul class="nav col-md-4 justify-content-center list-unstyled d-flex">
+                <span class="mb-3 mb-md-0 text-muted">RALT Signalman, Version 0.3</span>
+            </ul>
+
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <span class="mb-3 mb-md-0 text-muted">View on <a
+                        href="https://github.com/care-group/RALT-Signalman-Dashboard">GitHub</a></span>
+            </ul>
+        </footer>
+    </div>
+
     <script>
-        function update(){
+        function update() {
             $.ajax({
                 url: 'http://192.168.1.130:5002/status',
                 method: "GET",
@@ -251,7 +266,7 @@
             document.getElementById("defaultOpen").click();
         }
 
-        function render_status(data){
+        function render_status(data) {
             bagfile = data["bagfile"]
             running = data["running"]
             topics_robot_1 = data["topics_robot_1"]
@@ -259,91 +274,91 @@
             topics_other = data["topics_other"]
             merged_bagfile = data["merged_bagfile"]
 
-            jQuery.each(topics_robot_1, function(i, val) {
-                $( "#topics_robot_1" ).append(val+"<br>")
+            jQuery.each(topics_robot_1, function (i, val) {
+                $("#topics_robot_1").append(val + "<br>")
             });
 
-            jQuery.each(topics_robot_2, function(i, val) {
-                $( "#topics_robot_2" ).append(val+"<br>")
+            jQuery.each(topics_robot_2, function (i, val) {
+                $("#topics_robot_2").append(val + "<br>")
             });
 
-            jQuery.each(topics_other, function(i, val) {
-                $( "#topics_other" ).append(val+"<br>")
+            jQuery.each(topics_other, function (i, val) {
+                $("#topics_other").append(val + "<br>")
             });
 
-            $( "#status" ).empty()
-            if (running){
-                $( "#status" ).append("<span class='green_box'>RUNNING</span>")
+            $("#status").empty()
+            if (running) {
+                $("#status").append("<span class='green_box'>RUNNING</span>")
             }
-            else{
-                $( "#status" ).append("<span class='red_box'>STOPPED</span>")
+            else {
+                $("#status").append("<span class='red_box'>STOPPED</span>")
             }
 
-            $( "#bagfile" ).empty()
-            $( "#bagfile" ).append(bagfile)
-            
-            $( "#bagfile_merged" ).empty()
-            $( "#bagfile_merged" ).append(merged_bagfile)
+            $("#bagfile").empty()
+            $("#bagfile").append(bagfile)
+
+            $("#bagfile_merged").empty()
+            $("#bagfile_merged").append(merged_bagfile)
         }
 
-        function render_status_secondary(data){
+        function render_status_secondary(data) {
             bagfile = data["bagfile"]
             running = data["running"]
             topics = data["topics"]
 
-            $( "#bagfile_secondary" ).empty()
-            $( "#bagfile_secondary" ).append(bagfile)
+            $("#bagfile_secondary").empty()
+            $("#bagfile_secondary").append(bagfile)
         }
 
-        function render_status_video(data){
+        function render_status_video(data) {
             video_1 = data["camera_1"]
             video_2 = data["camera_2"]
             video_3 = data["camera_3"]
 
-            $( "#video_1" ).empty()
-            $( "#video_1" ).append(video_1)
+            $("#video_1").empty()
+            $("#video_1").append(video_1)
 
-            $( "#video_2" ).empty()
-            $( "#video_2" ).append(video_2)
-            
-            $( "#video_3" ).empty()
-            $( "#video_3" ).append(video_3)
+            $("#video_2").empty()
+            $("#video_2").append(video_2)
+
+            $("#video_3").empty()
+            $("#video_3").append(video_3)
         }
 
-        function render_status_container(status, container){
-            if(container == "ralt_signalman"){
-                if(status == "online"){
-                    $( "#container_status" ).append("<span class='green_box'>ralt_signalman</span><br>")
+        function render_status_container(status, container) {
+            if (container == "ralt_signalman") {
+                if (status == "online") {
+                    $("#container_status").append("<span class='green_box'>ralt_signalman</span><br>")
                 } else {
-                    $( "#container_status" ).append("<span class='red_box'>ralt_signalman</span><br>")
+                    $("#container_status").append("<span class='red_box'>ralt_signalman</span><br>")
                 }
             }
-            if(container == "ralt_signalman_webcam"){
-                if(status == "online"){
-                    $( "#container_status" ).append("<span class='green_box'>ralt_signalman_webcam</span><br>")
+            if (container == "ralt_signalman_webcam") {
+                if (status == "online") {
+                    $("#container_status").append("<span class='green_box'>ralt_signalman_webcam</span><br>")
                 } else {
-                    $( "#container_status" ).append("<span class='red_box'>ralt_signalman_webcam</span><br>")
+                    $("#container_status").append("<span class='red_box'>ralt_signalman_webcam</span><br>")
                 }
             }
-            if(container == "apple_watch_publisher"){
-                if(status == "online"){
-                    $( "#container_status" ).append("<span class='green_box'>apple_watch_publisher</span><br>")
+            if (container == "apple_watch_publisher") {
+                if (status == "online") {
+                    $("#container_status").append("<span class='green_box'>apple_watch_publisher</span><br>")
                 } else {
-                    $( "#container_status" ).append("<span class='red_box'>apple_watch_publisher</span><br>")
+                    $("#container_status").append("<span class='red_box'>apple_watch_publisher</span><br>")
                 }
             }
-            if(container == "ralt_signalman_secondary"){
-                if(status == "online"){
-                    $( "#container_status" ).append("<span class='green_box'>ralt_signalman_secondary</span><br>")
+            if (container == "ralt_signalman_secondary") {
+                if (status == "online") {
+                    $("#container_status").append("<span class='green_box'>ralt_signalman_secondary</span><br>")
                 } else {
-                    $( "#container_status" ).append("<span class='red_box'>ralt_signalman_secondary</span><br>")
+                    $("#container_status").append("<span class='red_box'>ralt_signalman_secondary</span><br>")
                 }
             }
-            if(container == "ralt_semantic_event_logger"){
-                if(status == "online"){
-                    $( "#container_status" ).append("<span class='green_box'>ralt_semantic_event_logger</span><br>")
+            if (container == "ralt_semantic_event_logger") {
+                if (status == "online") {
+                    $("#container_status").append("<span class='green_box'>ralt_semantic_event_logger</span><br>")
                 } else {
-                    $( "#container_status" ).append("<span class='red_box'>ralt_semantic_event_logger</span><br>")
+                    $("#container_status").append("<span class='red_box'>ralt_semantic_event_logger</span><br>")
                 }
             }
             // if(container == "ralt_har_mln"){
@@ -355,14 +370,14 @@
             // }
         }
 
-        function send_start_cmd(activity){
+        function send_start_cmd(activity) {
             $.ajax({
                 url: 'http://192.168.1.130:5002/control',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'True', activity: activity}),
+                data: JSON.stringify({ command: 'True', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from main backend!')
                     console.log(data)
@@ -378,7 +393,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'True', activity: activity}),
+                data: JSON.stringify({ command: 'True', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from secondary backend!')
                     console.log(data)
@@ -394,7 +409,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'True', activity: activity}),
+                data: JSON.stringify({ command: 'True', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from webcams backend!')
                     console.log(data)
@@ -410,7 +425,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'True', activity: activity}),
+                data: JSON.stringify({ command: 'True', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from ralt_semantic_event_logger container!')
                     console.log(data)
@@ -426,7 +441,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'True', activity: activity}),
+                data: JSON.stringify({ command: 'True', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from apple_watch_publisher container!')
                     console.log(data)
@@ -436,12 +451,12 @@
                     console.log(data)
                 }
             })
-            setTimeout(function(){
+            setTimeout(function () {
                 location.reload();
             }, 2000);
         }
 
-        function send_stop_cmd(){
+        function send_stop_cmd() {
             let activity = 'none';
             $.ajax({
                 url: 'http://192.168.1.130:5002/control',
@@ -449,7 +464,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'False', activity: activity}),
+                data: JSON.stringify({ command: 'False', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from main backend!')
                     console.log(data)
@@ -465,7 +480,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'False', activity: activity}),
+                data: JSON.stringify({ command: 'False', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from secondary backend!')
                     console.log(data)
@@ -481,7 +496,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'False', activity: activity}),
+                data: JSON.stringify({ command: 'False', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from webcams backend!')
                     console.log(data)
@@ -497,7 +512,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'False', activity: activity}),
+                data: JSON.stringify({ command: 'False', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from ralt_semantic_event_logger container!')
                     console.log(data)
@@ -513,7 +528,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ command: 'False', activity: activity}),
+                data: JSON.stringify({ command: 'False', activity: activity }),
                 success: function (data) {
                     console.log('Successful response from apple_watch_publisher container!')
                     console.log(data)
@@ -523,23 +538,23 @@
                     console.log(data)
                 }
             })
-            setTimeout(function(){
+            setTimeout(function () {
                 location.reload();
             }, 2000);
         }
 
-        function merge_bag_files(){
+        function merge_bag_files() {
             $.ajax({
                 url: 'http://192.168.1.130:5002/merge',
                 method: "POST",
                 headers: {
                     "Content-Type": "application/txt",
                 },
-                data: $( "#bagfile_secondary" ).text(),
+                data: $("#bagfile_secondary").text(),
                 success: function (data) {
                     console.log('Successful merge request!')
                     console.log(data)
-                    setTimeout(function(){
+                    setTimeout(function () {
                         location.reload();
                     }, 2000);
                 },
@@ -550,7 +565,7 @@
             })
         }
 
-        function submit_participant_id(){
+        function submit_participant_id() {
             participant = $("#participant_id").val()
             $.ajax({
                 url: 'http://192.168.1.130:5002/participant',
@@ -634,7 +649,7 @@
             })
         }
 
-        const interval = setInterval(function() {
+        const interval = setInterval(function () {
             location.reload();
         }, 30000);
     </script>

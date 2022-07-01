@@ -14,33 +14,18 @@
 
 <body onload="update()">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#"><img src="assets/ralt_house.png" height=55px></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item inactive">
-                        <a class="nav-link" href='index.html'>Control</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="status.html">Sensor Status
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <!-- <li class="nav-item inactive">
-                        <a class="nav-link" href='har.html'>Activity Recognition</a>
-                    </li> -->
-                    <li class="nav-item inactive">
-                        <a class="nav-link" href='test.html'>Sensor Test</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div class="container" style="margin-bottom:-18pt;">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                <img src="assets/ralt_house.png" height=55px>
+            </a>
+
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-right mb-md-0">
+                <li><a href="index.html" class="nav-link px-2 link-dark">Control Panel</a></li>
+                <li><a href="#" class="nav-link px-2 link-secondary">Sensor Status</a></li>
+            </ul>
+        </header>
+    </div>
 
     <header class="py-2 mb-5" style="background-image: url('assets/header-pink.png'); background-size: auto 100%; height: 250px;">
     </header>
@@ -54,6 +39,24 @@
                 </p>
             </div>
         </div>
+    </div>
+
+    <div class="container">
+        <br>
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <span class="mb-3 mb-md-0 text-muted">&copy; 2022 Ronnie Smith.</span>
+            </div>
+
+            <ul class="nav col-md-4 justify-content-center list-unstyled d-flex">
+                <span class="mb-3 mb-md-0 text-muted">RALT Signalman, Version 0.3</span>
+            </ul>
+
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <span class="mb-3 mb-md-0 text-muted">View on <a
+                        href="https://github.com/care-group/RALT-Signalman-Dashboard">GitHub</a></span>
+            </ul>
+        </footer>
     </div>
 
     <script>
