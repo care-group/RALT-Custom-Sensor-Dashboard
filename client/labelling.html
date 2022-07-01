@@ -80,6 +80,16 @@
                         onclick="send_stop_cmd()">Stop</button>
                     <br>
                     <br>
+                    
+                    <h3>Sound Effects</h3>
+                    <audio id="toilet_flush" src="audio/toilet_flush.wav" type="audio/wav"></audio>
+                    <button type="button" style="width:20%" class="btn btn-info" onclick="sound_effect('toilet_flush')">Toilet Flush</button>
+                    <audio id="tap_running" src="audio/tap_water.wav" type="audio/wav"></audio>
+                    <button type="button" style="width:20%" class="btn btn-info" onclick="sound_effect('tap_running')">Tap Running</button>
+                    <audio id="snoring" src="audio/snoring.wav" type="audio/wav"></audio>
+                    <button type="button" style="width:20%" class="btn btn-info" onclick="sound_effect('snoring')">Snoring</button>
+                    <br>
+                    <br>
 
                     <h3>Label Status</h3>
                     <code id="status_continuous">
@@ -517,6 +527,21 @@
             // Show the current tab, and add an "active" class to the button that opened the tab
             document.getElementById(labelSetName).style.display = "block";
             evt.currentTarget.className += " active";
+        }
+
+        function sound_effect(sound){
+            if (sound == "toilet_flush"){
+                $('#toilet_flush').get(0).play();
+            }
+            else if (sound == "tap_running"){
+                $('#tap_running').get(0).play();
+            }
+            else if (sound == "snoring"){
+                $('#snoring').get(0).play();
+            }
+            else {
+                console.log('Invalid sound specified.')
+            }
         }
     </script>
 </body>
