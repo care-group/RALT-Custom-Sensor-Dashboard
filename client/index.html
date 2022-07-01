@@ -80,7 +80,7 @@
                     None.
                 </code>
                 <br>
-                <code id="bagfile_hsr">
+                <code id="bagfile_secondary">
                     None.
                 </code>
                 <br>
@@ -126,7 +126,7 @@
 
                 <h3>Step 3: Merge Bag Files</h3>
                 <div class="alert alert-info" role="alert">
-                    If you did not utilise the Toyota HSR during your data collection, you can skip this step.
+                    If you did not utilise a second robot (Robot 2) during your data collection, you can skip this step.
                 </div>
                 <button type="button" style="width:100%;" class="btn btn-primary" onclick="merge_bag_files()">Merge</button>
                 <br>
@@ -151,7 +151,6 @@
                     render_status_container("online", "ralt_signalman")
                 },
                 error: function (data) {
-                    $("#sensors").append("The sensor status API is unavailable. Please check the container logs for errors.")
                     console.log('Failed response from main backend!')
                     console.log(data)
                     render_status_container("offline", "ralt_signalman")
@@ -165,15 +164,15 @@
                 },
                 data: "",
                 success: function (data) {
-                    console.log('Successful response from HSR backend!')
+                    console.log('Successful response from secondary backend!')
                     console.log(data)
-                    render_status_hsr(data)
-                    render_status_container("online", "ralt_signalman_hsr")
+                    render_status_secondary(data)
+                    render_status_container("online", "ralt_signalman_secondary")
                 },
                 error: function (data) {
-                    console.log('Failed response from HSR backend!')
+                    console.log('Failed response from secondary backend!')
                     console.log(data)
-                    render_status_container("offline", "ralt_signalman_hsr")
+                    render_status_container("offline", "ralt_signalman_secondary")
                 }
             })
             $.ajax({
@@ -287,13 +286,13 @@
             $( "#bagfile_merged" ).append(merged_bagfile)
         }
 
-        function render_status_hsr(data){
+        function render_status_secondary(data){
             bagfile = data["bagfile"]
             running = data["running"]
             topics = data["topics"]
 
-            $( "#bagfile_hsr" ).empty()
-            $( "#bagfile_hsr" ).append(bagfile)
+            $( "#bagfile_secondary" ).empty()
+            $( "#bagfile_secondary" ).append(bagfile)
         }
 
         function render_status_video(data){
@@ -333,11 +332,11 @@
                     $( "#container_status" ).append("<span class='red_box'>apple_watch_publisher</span><br>")
                 }
             }
-            if(container == "ralt_signalman_hsr"){
+            if(container == "ralt_signalman_secondary"){
                 if(status == "online"){
-                    $( "#container_status" ).append("<span class='green_box'>ralt_signalman_hsr</span><br>")
+                    $( "#container_status" ).append("<span class='green_box'>ralt_signalman_secondary</span><br>")
                 } else {
-                    $( "#container_status" ).append("<span class='red_box'>ralt_signalman_hsr</span><br>")
+                    $( "#container_status" ).append("<span class='red_box'>ralt_signalman_secondary</span><br>")
                 }
             }
             if(container == "ralt_semantic_event_logger"){
@@ -369,7 +368,6 @@
                     console.log(data)
                 },
                 error: function (data) {
-                    $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
                     console.log('Failed response from main backend!')
                     console.log(data)
                 }
@@ -382,12 +380,11 @@
                 },
                 data: JSON.stringify({ command: 'True', activity: activity}),
                 success: function (data) {
-                    console.log('Successful response from HSR backend!')
+                    console.log('Successful response from secondary backend!')
                     console.log(data)
                 },
                 error: function (data) {
-                    $("#sensors").append("The Signalman backend (HSR) is unavailable. Please check the container logs for errors.")
-                    console.log('Failed response from HSR backend!')
+                    console.log('Failed response from secondary backend!')
                     console.log(data)
                 }
             })
@@ -403,7 +400,6 @@
                     console.log(data)
                 },
                 error: function (data) {
-                    $("#sensors").append("The Signalman backend (webcams) is unavailable. Please check the container logs for errors.")
                     console.log('Failed response from webcams backend!')
                     console.log(data)
                 }
@@ -459,7 +455,6 @@
                     console.log(data)
                 },
                 error: function (data) {
-                    $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
                     console.log('Failed response from main backend!')
                     console.log(data)
                 }
@@ -472,12 +467,11 @@
                 },
                 data: JSON.stringify({ command: 'False', activity: activity}),
                 success: function (data) {
-                    console.log('Successful response from HSR backend!')
+                    console.log('Successful response from secondary backend!')
                     console.log(data)
                 },
                 error: function (data) {
-                    $("#sensors").append("The Signalman backend (HSR) is unavailable. Please check the container logs for errors.")
-                    console.log('Failed response from HSR backend!')
+                    console.log('Failed response from secondary backend!')
                     console.log(data)
                 }
             })
@@ -493,7 +487,6 @@
                     console.log(data)
                 },
                 error: function (data) {
-                    $("#sensors").append("The Signalman backend (webcams) is unavailable. Please check the container logs for errors.")
                     console.log('Failed response from webcams backend!')
                     console.log(data)
                 }
@@ -542,7 +535,7 @@
                 headers: {
                     "Content-Type": "application/txt",
                 },
-                data: $( "#bagfile_hsr" ).text(),
+                data: $( "#bagfile_secondary" ).text(),
                 success: function (data) {
                     console.log('Successful merge request!')
                     console.log(data)
@@ -551,7 +544,6 @@
                     }, 2000);
                 },
                 error: function (data) {
-                    $("#sensors").append("Either the Signalman backend is unavailable, or the process to merge bag files has failed. Please check the container logs for errors.")
                     console.log('Failed response from main backend!')
                     console.log(data)
                 }
@@ -572,7 +564,6 @@
                     console.log(data)
                 },
                 error: function (data) {
-                    $("#sensors").append("The Signalman backend is unavailable. Please check the container logs for errors.")
                     console.log('Failed response from main backend!')
                     console.log(data)
                 }
@@ -585,12 +576,11 @@
                 },
                 data: JSON.stringify({ participant: participant }),
                 success: function (data) {
-                    console.log('Successful response from HSR backend!')
+                    console.log('Successful response from secondary backend!')
                     console.log(data)
                 },
                 error: function (data) {
-                    $("#sensors").append("The Signalman backend (HSR) is unavailable. Please check the container logs for errors.")
-                    console.log('Failed response from HSR backend!')
+                    console.log('Failed response from secondary backend!')
                     console.log(data)
                 }
             })
@@ -606,7 +596,6 @@
                     console.log(data)
                 },
                 error: function (data) {
-                    $("#sensors").append("The Signalman backend (webcams) is unavailable. Please check the container logs for errors.")
                     console.log('Failed response from webcams backend!')
                     console.log(data)
                 }

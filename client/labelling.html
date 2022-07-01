@@ -239,11 +239,11 @@
                 },
                 data: JSON.stringify({ command: 'True', activity: activity }),
                 success: function (data) {
-                    console.log('Successful response from HSR backend!')
+                    console.log('Successful response from secondary backend!')
                     console.log(data)
                 },
                 error: function (data) {
-                    console.log('Failed response from HSR backend!')
+                    console.log('Failed response from secondary backend!')
                     console.log(data)
                 }
             })
@@ -292,6 +292,22 @@
                 },
                 error: function (data) {
                     console.log('Failed response from apple_watch_publisher container!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://192.168.1.130:6000/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ command: 'True', activity: activity }),
+                success: function (data) {
+                    console.log('Successful response from OH-SCT backend!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    console.log('Failed response from OH-SCT backend!')
                     console.log(data)
                 }
             })
@@ -322,6 +338,22 @@
                     $("#status_continuous").append(msg);
                 }
             })
+            $.ajax({
+                url: 'http://192.168.1.130:6000/update',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ command: 'True', activity: activity }),
+                success: function (data) {
+                    console.log('Successful response from OH-SCT backend!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    console.log('Failed response from OH-SCT backend!')
+                    console.log(data)
+                }
+            })
         }
 
         function send_stop_cmd() {
@@ -350,11 +382,11 @@
                 },
                 data: JSON.stringify({ command: 'False', activity: activity }),
                 success: function (data) {
-                    console.log('Successful response from HSR backend!')
+                    console.log('Successful response from secondary backend!')
                     console.log(data)
                 },
                 error: function (data) {
-                    console.log('Failed response from HSR backend!')
+                    console.log('Failed response from secondary backend!')
                     console.log(data)
                 }
             })
@@ -403,6 +435,22 @@
                 },
                 error: function (data) {
                     console.log('Failed response from apple_watch_publisher container!')
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: 'http://192.168.1.130:6000/control',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: JSON.stringify({ command: 'False', activity: activity }),
+                success: function (data) {
+                    console.log('Successful response from OH-SCT backend!')
+                    console.log(data)
+                },
+                error: function (data) {
+                    console.log('Failed response from OH-SCT backend!')
                     console.log(data)
                 }
             })
